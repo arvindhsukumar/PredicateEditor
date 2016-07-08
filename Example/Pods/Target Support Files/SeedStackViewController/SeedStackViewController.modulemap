@@ -1,0 +1,6 @@
+framework module StackViewController {
+  umbrella header "SeedStackViewController-umbrella.h"
+
+  export *
+  module * { export * }
+}

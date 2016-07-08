@@ -2,7 +2,7 @@ use_frameworks!
 
 target 'PredicateEditor_Example' do
   pod 'PredicateEditor', :path => '../'
-
+  
   target 'PredicateEditor_Tests' do
     inherit! :search_paths
 

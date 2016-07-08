@@ -1,0 +1,22 @@
+PODS:
+  - PredicateEditor (0.1.0):
+    - SeedStackViewController (~> 0.2)
+    - SnapKit (~> 0.21)
+  - SeedStackViewController (0.2.1)
+  - SnapKit (0.21.1)
+
+DEPENDENCIES:
+  - PredicateEditor (from `../`)
+
+EXTERNAL SOURCES:
+  PredicateEditor:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  PredicateEditor: c4e3f385e74e116ee38b57eac7204f1eeb72ed11
+  SeedStackViewController: aece175e207147f58b2ca9c502ab2bd26eb00952
+  SnapKit: bbad04cb016c7cead63965f16b00c09318d271ee
+
+PODFILE CHECKSUM: 497240e87c1b562f70d58ab4ea4a96607eff5fc2
+
+COCOAPODS: 1.0.1
