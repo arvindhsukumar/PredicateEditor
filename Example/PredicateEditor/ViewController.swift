@@ -8,6 +8,7 @@
 
 import UIKit
 import PredicateEditor
+import StackViewController
 
 class ViewController: UIViewController {
 
@@ -15,15 +16,14 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         let section = Section(title: "Test", keyPaths: [KeyPathDescriptor(keyPath:"name", displayString: "Name", propertyType: .String)])
-        let sectionView = SectionView(section: section)
-        view.addSubview(sectionView)
-        sectionView.snp_makeConstraints { (make) in
-            make.top.equalTo(view).inset(4)
-            make.left.equalTo(view).inset(4)
-            make.right.equalTo(view).inset(4)
+        let predicateEditorVC = PredicateEditorViewController(sections: [section])
+        addChildViewController(predicateEditorVC)
+        view.addSubview(predicateEditorVC.view)
+        predicateEditorVC.didMoveToParentViewController(self)
+        
+        predicateEditorVC.view.snp_makeConstraints { (make) in
+            make.edges.equalTo(view)
         }
-        
-        
         
     }
 

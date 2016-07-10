@@ -9,13 +9,7 @@
 import UIKit
 import SnapKit
 
-protocol RowStackViewDatasource: class {
-    func numberOfViews() -> Int
-    func viewForItemAtIndex(index: Int) -> UIView
-}
-
 public class RowStackView: UIView {
-    weak var datasource: RowStackViewDatasource?
     var stackView: UIStackView!
 
     override init(frame: CGRect) {
@@ -44,17 +38,4 @@ public class RowStackView: UIView {
             make.edges.equalTo(self)
         }
     }
-
-    func reloadData(){
-        for sv in stackView.arrangedSubviews{
-            stackView.removeArrangedSubview(sv)
-        }
-
-        for i in 0..<(datasource?.numberOfViews() ?? 0) {
-            if let view = datasource?.viewForItemAtIndex(i) {
-                stackView.addArrangedSubview(view)
-            }
-        }
-    }
-
 }

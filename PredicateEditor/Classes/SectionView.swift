@@ -10,19 +10,25 @@ import UIKit
 import SnapKit
 import StackViewController
 
-public class SectionView: UIView, RowStackViewDatasource {
-    var section: Section!
-    var titleLabel: UILabel!
-    var rowStackView: RowStackView!
+@objc protocol SectionDelegate {
 
-    convenience public init(section: Section){
-        self.init(frame: CGRectZero)
-        self.section = section
-        setup()
-    }
-    
+}
+
+@objc protocol SectionDataSource {
+    func sectionViewTitle() -> String
+    func sectionViewNumberOfRows() -> Int
+    func sectionViewRowForItemAtIndex(index: Int) -> UIView
+}
+
+public class SectionView: UIView {
+    weak var delegate: SectionDelegate?
+    weak var dataSource: SectionDataSource?
+    var titleLabel: UILabel!
+    var rowStackView: UIStackView!
+
     override public init(frame: CGRect) {
         super.init(frame: frame)
+        setup()
     }
     
     required public init?(coder aDecoder: NSCoder) {
@@ -35,7 +41,7 @@ public class SectionView: UIView, RowStackViewDatasource {
         
         titleLabel = UILabel()
         titleLabel.font = UIFont.systemFontOfSize(17)
-        titleLabel.text = section.title
+        titleLabel.text = dataSource?.sectionViewTitle()
         addSubview(titleLabel)
         titleLabel.snp_makeConstraints {
             make in
@@ -45,8 +51,14 @@ public class SectionView: UIView, RowStackViewDatasource {
             make.height.equalTo(44)
         }
 
-        rowStackView = RowStackView()
-        rowStackView.datasource = self
+        rowStackView = UIStackView(frame: CGRectZero)
+        rowStackView = UIStackView(frame: CGRectZero)
+        rowStackView.backgroundColor = UIColor.blueColor()
+        rowStackView.axis = UILayoutConstraintAxis.Vertical
+        rowStackView.distribution = .FillProportionally
+        rowStackView.alignment = .Fill
+        rowStackView.spacing = 3.0
+        rowStackView.setContentHuggingPriority(UILayoutPriorityRequired, forAxis: UILayoutConstraintAxis.Vertical)
         addSubview(rowStackView)
         rowStackView.snp_makeConstraints {
             make in
@@ -56,25 +68,19 @@ public class SectionView: UIView, RowStackViewDatasource {
             make.bottom.equalTo(self).offset(-4)
         }
         
-        rowStackView.reloadData()
+        reloadData()
     }
 
-    func numberOfViews() -> Int {
-        return 2
-    }
-
-    func viewForItemAtIndex(index: Int) -> UIView {
-        let view = UIView(frame: CGRectMake(0,0,200,100))
-        view.translatesAutoresizingMaskIntoConstraints = false
-        let label = UILabel()
-        label.text = "Item \(index)"
-        view.addSubview(label)
-        label.snp_makeConstraints { (make) in
-            make.edges.equalTo(view).inset(10).priority(990)
+    func reloadData(){
+        titleLabel.text = dataSource?.sectionViewTitle()
+        for sv in rowStackView.arrangedSubviews{
+            rowStackView.removeArrangedSubview(sv)
         }
-        view.backgroundColor = UIColor.redColor()
 
-        return view
+        for i in 0..<(dataSource?.sectionViewNumberOfRows() ?? 0) {
+            if let view = dataSource?.sectionViewRowForItemAtIndex(i) {
+                rowStackView.addArrangedSubview(view)
+            }
+        }
     }
-
 }
