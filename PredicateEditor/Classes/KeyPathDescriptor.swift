@@ -20,9 +20,9 @@ public enum KeyPathPropertyType {
             case .Number:
                 return [.Is, .IsNot, .IsGreaterThan, .IsGreaterThanOrEqualTo, .IsLessThan, .IsLessThanOrEqualTo]
             case .Date:
-                return [.IsOn, .IsNotOn, .IsAfter, .IsBefore, .IsToday, .IsBetween, .IsInTheLast]
+                return [.IsOn, .IsNotOn, .IsAfter, .IsBefore, .IsToday, .IsBetween]
             case .Time:
-                return [.IsExactly, .IsNotExactly, .IsAfter, .IsBefore, .IsToday, .IsBetween, .IsInTheLast]
+                return [.IsExactly, .IsNotExactly, .IsAfter, .IsBefore, .IsToday, .IsBetween]
             case .Array:
                 return [.Contains]
             case .Enumeration, .Boolean:
@@ -54,11 +54,68 @@ public enum KeyPathComparisonType: String {
     case IsBefore = "is before"
     case IsToday = "is today"
     case IsBetween = "is between"
-    case IsInTheLast = "is in the last"
     case IsExactly = "is exactly"
     case IsNotExactly = "is not exactly"
+    
+    func predicateOperatorType() -> NSPredicateOperatorType {
+        switch self {
+        case .Is:
+            return .EqualToPredicateOperatorType
+        case .IsNot:
+            return .NotEqualToPredicateOperatorType
+        case .Contains:
+            return .ContainsPredicateOperatorType
+        case .DoesNotContain:
+            return .ContainsPredicateOperatorType
+        case .BeginsWith:
+            return .BeginsWithPredicateOperatorType
+        case .EndsWith:
+            return .EndsWithPredicateOperatorType
+        case .IsGreaterThan:
+            return .GreaterThanPredicateOperatorType
+        case .IsGreaterThanOrEqualTo:
+            return .GreaterThanOrEqualToPredicateOperatorType
+        case .IsLessThan:
+            return .LessThanPredicateOperatorType
+        case .IsLessThanOrEqualTo:
+            return .LessThanOrEqualToPredicateOperatorType
+        case .IsOn:
+            return KeyPathComparisonType.Is.predicateOperatorType()
+        case .IsNotOn:
+            return KeyPathComparisonType.IsNot.predicateOperatorType()
+        case .IsAfter:
+            return KeyPathComparisonType.IsGreaterThan.predicateOperatorType()
+        case .IsBefore:
+            return KeyPathComparisonType.IsLessThan.predicateOperatorType()
+        case .IsExactly:
+            return KeyPathComparisonType.Is.predicateOperatorType()
+        case .IsNotExactly:
+            return KeyPathComparisonType.IsNot.predicateOperatorType()
+        default:
+            return .EqualToPredicateOperatorType
+        }
+    }
+    
+    func shouldNegate() -> Bool {
+        switch self {
+            case .DoesNotContain:
+                return true
+            default:
+                return false
+        }
+    }
 }
 
+enum UnitType {
+    // For use with "in the last x" date/time comparison type
+    case Year
+    case Month
+    case Week
+    case Day
+    case Hour
+    case Minute
+    case Second
+}
 
 public struct KeyPathDescriptor {
     var displayString: String!
