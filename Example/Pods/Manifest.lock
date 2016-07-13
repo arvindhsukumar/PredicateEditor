@@ -1,5 +1,7 @@
 PODS:
+  - NSDateExtensions (0.1.0)
   - PredicateEditor (0.1.0):
+    - NSDateExtensions (~> 0.1)
     - SeedStackViewController (~> 0.2)
     - SnapKit (~> 0.21)
   - SeedStackViewController (0.2.1)
@@ -13,7 +15,8 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  PredicateEditor: c4e3f385e74e116ee38b57eac7204f1eeb72ed11
+  NSDateExtensions: e19e6a72bf7e29b12282f1f878007a439e1adef0
+  PredicateEditor: 37ce65ca1a5352d0edb1acaa93c5c531e1bd1f7a
   SeedStackViewController: aece175e207147f58b2ca9c502ab2bd26eb00952
   SnapKit: bbad04cb016c7cead63965f16b00c09318d271ee
 

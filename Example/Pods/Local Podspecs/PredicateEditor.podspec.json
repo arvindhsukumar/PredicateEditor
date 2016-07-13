@@ -25,6 +25,9 @@
     ],
     "SeedStackViewController": [
       "~> 0.2"
+    ],
+    "NSDateExtensions": [
+      "~> 0.1"
     ]
   }
 }

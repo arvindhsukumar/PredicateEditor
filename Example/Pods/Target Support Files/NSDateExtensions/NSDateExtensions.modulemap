@@ -1,0 +1,6 @@
+framework module NSDateExtensions {
+  umbrella header "NSDateExtensions-umbrella.h"
+
+  export *
+  module * { export * }
+}

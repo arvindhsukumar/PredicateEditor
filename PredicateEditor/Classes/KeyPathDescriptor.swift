@@ -3,6 +3,7 @@
 //
 
 import Foundation
+import NSDateExtensions
 
 public enum KeyPathPropertyType {
     case String
@@ -98,10 +99,29 @@ public enum KeyPathComparisonType: String {
     
     func shouldNegate() -> Bool {
         switch self {
-            case .DoesNotContain:
+            case .DoesNotContain, .IsNotOn:
                 return true
             default:
                 return false
+        }
+    }
+    
+    func customPredicate(keypath: String, arg: PredicateComparable?) -> NSPredicate? {
+        switch self {
+        case .IsOn, .IsNotOn:
+            let date = arg as? NSDate
+            return NSPredicate(format: "%K.startOfDay == %@", keypath, date?.startOfDay() ?? NSNull())
+        case .IsAfter:
+            let date = arg as? NSDate
+            return NSPredicate(format: "%K.endOfDay < %@", keypath, date?.startOfDay() ?? NSNull())
+        case .IsBefore:
+            let date = arg as? NSDate
+            return NSPredicate(format: "%K.startOfDay > %@", keypath, date?.endOfDay() ?? NSNull())
+        case .IsToday:
+            let date = arg as? NSDate
+            return NSPredicate(format: "%K.startOfDay == %@", keypath, NSDate().startOfDay())
+        default:
+            return nil
         }
     }
 }

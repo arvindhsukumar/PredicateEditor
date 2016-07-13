@@ -40,4 +40,5 @@ TODO: Add long description of the pod here.
   # s.frameworks = 'UIKit', 'MapKit'
   s.dependency 'SnapKit', '~> 0.21'
   s.dependency 'SeedStackViewController', '~> 0.2'
+  s.dependency 'NSDateExtensions', '~> 0.1'
 end

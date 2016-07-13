@@ -5,7 +5,7 @@
 import Foundation
 
 enum RowPredicateError: ErrorType {
-    case InsufficientData(keypath: String)
+    case InsufficientData(keypath: String?)
     case InvalidComparisonType(keypath: String)
 }
 
@@ -34,18 +34,23 @@ enum RowPredicateError: ErrorType {
             throw RowPredicateError.InvalidComparisonType(keypath: descriptor.keyPath)
         }
         
-        let lhsExpression = NSExpression(forKeyPath: descriptor.keyPath)
-        let rhsExpression = NSExpression(forConstantValue: value.baseValue?.constantValue())
-        
-        var type: NSPredicateOperatorType = comparisonType.predicateOperatorType()
-        var options: NSComparisonPredicateOptions = (descriptor.propertyType == .String) ? [NSComparisonPredicateOptions.CaseInsensitivePredicateOption, NSComparisonPredicateOptions.DiacriticInsensitivePredicateOption] : []
-        
-        let predicate = NSComparisonPredicate(leftExpression: lhsExpression,
-                                              rightExpression: rhsExpression,
-                                              modifier: NSComparisonPredicateModifier.DirectPredicateModifier,
-                                              type: type,
-                                              options: options)
-        
+        var predicate: NSPredicate!
+        if let customPredicate = comparisonType.customPredicate(descriptor.keyPath, arg: value.baseValue) {
+            predicate = customPredicate
+        }
+        else {
+            let lhsExpression = NSExpression(forKeyPath: descriptor.keyPath)
+            let rhsExpression = NSExpression(forConstantValue: value.baseValue?.constantValue())
+            
+            var type: NSPredicateOperatorType = comparisonType.predicateOperatorType()
+            var options: NSComparisonPredicateOptions = (descriptor.propertyType == .String) ? [NSComparisonPredicateOptions.CaseInsensitivePredicateOption, NSComparisonPredicateOptions.DiacriticInsensitivePredicateOption] : []
+            
+            let predicate = NSComparisonPredicate(leftExpression: lhsExpression,
+                                                  rightExpression: rhsExpression,
+                                                  modifier: NSComparisonPredicateModifier.DirectPredicateModifier,
+                                                  type: type,
+                                                  options: options)
+        }
         return comparisonType.shouldNegate() ? NSCompoundPredicate(notPredicateWithSubpredicate: predicate) : predicate
     }
 }
