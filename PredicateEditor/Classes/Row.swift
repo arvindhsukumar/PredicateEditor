@@ -5,7 +5,8 @@
 import Foundation
 
 enum RowPredicateError: ErrorType {
-    case InvalidComparisonType
+    case InsufficientData(keypath: String)
+    case InvalidComparisonType(keypath: String)
 }
 
 @objc public class Row: NSObject {
@@ -23,16 +24,19 @@ enum RowPredicateError: ErrorType {
         self.value = ValueHolder(baseValue: value)
     }
     
-    func toPredicate() throws -> NSPredicate? {
+    func toPredicate() throws -> NSPredicate {
         //TODO: throw error?
-        guard let descriptor = descriptor, comparisonType = comparisonType, let value = value else {return nil}
+        guard let descriptor = descriptor, comparisonType = comparisonType, let value = value else {
+            throw RowPredicateError.InsufficientData(keypath: self.descriptor?.keyPath ?? "")
+        }
         
         if !descriptor.propertyType.comparisonTypes().contains(comparisonType) {
-            throw RowPredicateError.InvalidComparisonType
+            throw RowPredicateError.InvalidComparisonType(keypath: descriptor.keyPath)
         }
         
         let lhsExpression = NSExpression(forKeyPath: descriptor.keyPath)
         let rhsExpression = NSExpression(forConstantValue: value.baseValue?.constantValue())
+        
         var type: NSPredicateOperatorType = comparisonType.predicateOperatorType()
         var options: NSComparisonPredicateOptions = (descriptor.propertyType == .String) ? [NSComparisonPredicateOptions.CaseInsensitivePredicateOption, NSComparisonPredicateOptions.DiacriticInsensitivePredicateOption] : []
         
@@ -40,7 +44,7 @@ enum RowPredicateError: ErrorType {
                                               rightExpression: rhsExpression,
                                               modifier: NSComparisonPredicateModifier.DirectPredicateModifier,
                                               type: type,
-                                              options: options )
+                                              options: options)
         
         return comparisonType.shouldNegate() ? NSCompoundPredicate(notPredicateWithSubpredicate: predicate) : predicate
     }
