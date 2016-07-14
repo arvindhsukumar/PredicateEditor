@@ -87,9 +87,11 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/PredicateEditor/PredicateEditor.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SeedStackViewController/StackViewController.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SnapKit/SnapKit.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Timepiece/Timepiece.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/PredicateEditor/PredicateEditor.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SeedStackViewController/StackViewController.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SnapKit/SnapKit.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Timepiece/Timepiece.framework"
 fi

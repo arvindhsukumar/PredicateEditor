@@ -26,8 +26,8 @@
     "SeedStackViewController": [
       "~> 0.2"
     ],
-    "NSDateExtensions": [
-      "~> 0.1"
+    "Timepiece": [
+      "~> 0.4"
     ]
   }
 }

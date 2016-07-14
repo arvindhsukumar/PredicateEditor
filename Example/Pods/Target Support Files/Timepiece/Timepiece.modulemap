@@ -1,0 +1,6 @@
+framework module Timepiece {
+  umbrella header "Timepiece-umbrella.h"
+
+  export *
+  module * { export * }
+}

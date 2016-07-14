@@ -1,11 +1,11 @@
 PODS:
-  - NSDateExtensions (0.1.0)
   - PredicateEditor (0.1.0):
-    - NSDateExtensions (~> 0.1)
     - SeedStackViewController (~> 0.2)
     - SnapKit (~> 0.21)
+    - Timepiece (~> 0.4)
   - SeedStackViewController (0.2.1)
   - SnapKit (0.21.1)
+  - Timepiece (0.4.3)
 
 DEPENDENCIES:
   - PredicateEditor (from `../`)
@@ -15,10 +15,10 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  NSDateExtensions: e19e6a72bf7e29b12282f1f878007a439e1adef0
-  PredicateEditor: 37ce65ca1a5352d0edb1acaa93c5c531e1bd1f7a
+  PredicateEditor: 0cc8118f694b89fa01452138459c08e4a547692e
   SeedStackViewController: aece175e207147f58b2ca9c502ab2bd26eb00952
   SnapKit: bbad04cb016c7cead63965f16b00c09318d271ee
+  Timepiece: b5038887b91d6eb70653173f4270e06b3abeac41
 
 PODFILE CHECKSUM: 497240e87c1b562f70d58ab4ea4a96607eff5fc2
 
