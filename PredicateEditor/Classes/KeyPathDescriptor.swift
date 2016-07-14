@@ -3,7 +3,7 @@
 //
 
 import Foundation
-import NSDateExtensions
+import Timepiece
 
 public enum KeyPathPropertyType {
     case String
@@ -11,6 +11,7 @@ public enum KeyPathPropertyType {
     case Boolean
     case Date
     case Time
+    case DateTime
     case Array
     case Enumeration
     
@@ -23,7 +24,9 @@ public enum KeyPathPropertyType {
             case .Date:
                 return [.IsOn, .IsNotOn, .IsAfter, .IsBefore, .IsToday, .IsBetween]
             case .Time:
-                return [.IsExactly, .IsNotExactly, .IsAfter, .IsBefore, .IsToday, .IsBetween]
+                return [.IsExactly, .IsNotExactly, .IsAfter, .IsBefore, .IsBetween]
+            case .DateTime:
+                return [.IsExactly, .IsNotExactly, .IsAfter, .IsBefore, .IsBetween]
             case .Array:
                 return [.Contains]
             case .Enumeration, .Boolean:
@@ -58,7 +61,7 @@ public enum KeyPathComparisonType: String {
     case IsExactly = "is exactly"
     case IsNotExactly = "is not exactly"
     
-    func predicateOperatorType() -> NSPredicateOperatorType {
+    func predicateOperatorType() -> NSPredicateOperatorType? {
         switch self {
         case .Is:
             return .EqualToPredicateOperatorType
@@ -80,49 +83,25 @@ public enum KeyPathComparisonType: String {
             return .LessThanPredicateOperatorType
         case .IsLessThanOrEqualTo:
             return .LessThanOrEqualToPredicateOperatorType
-        case .IsOn:
-            return KeyPathComparisonType.Is.predicateOperatorType()
-        case .IsNotOn:
-            return KeyPathComparisonType.IsNot.predicateOperatorType()
-        case .IsAfter:
-            return KeyPathComparisonType.IsGreaterThan.predicateOperatorType()
-        case .IsBefore:
-            return KeyPathComparisonType.IsLessThan.predicateOperatorType()
-        case .IsExactly:
-            return KeyPathComparisonType.Is.predicateOperatorType()
-        case .IsNotExactly:
-            return KeyPathComparisonType.IsNot.predicateOperatorType()
         default:
-            return .EqualToPredicateOperatorType
+            return nil
         }
     }
     
     func shouldNegate() -> Bool {
         switch self {
-            case .DoesNotContain, .IsNotOn:
+            case .DoesNotContain, .IsNotOn, .IsNotExactly:
                 return true
             default:
                 return false
         }
     }
     
-    func customPredicate(keypath: String, arg: PredicateComparable?) -> NSPredicate? {
-        switch self {
-        case .IsOn, .IsNotOn:
-            let date = arg as? NSDate
-            return NSPredicate(format: "%K.startOfDay == %@", keypath, date?.startOfDay() ?? NSNull())
-        case .IsAfter:
-            let date = arg as? NSDate
-            return NSPredicate(format: "%K.endOfDay < %@", keypath, date?.startOfDay() ?? NSNull())
-        case .IsBefore:
-            let date = arg as? NSDate
-            return NSPredicate(format: "%K.startOfDay > %@", keypath, date?.endOfDay() ?? NSNull())
-        case .IsToday:
-            let date = arg as? NSDate
-            return NSPredicate(format: "%K.startOfDay == %@", keypath, NSDate().startOfDay())
-        default:
-            return nil
+    func needsCustomPredicate() -> Bool {
+        if let _ = predicateOperatorType() {
+            return false
         }
+        return true
     }
 }
 
