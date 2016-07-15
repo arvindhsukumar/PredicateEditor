@@ -1,6 +1,12 @@
 # OS X
 .DS_Store
 
+Example/PredicateEditor/Playground.playground
+PredicateEditor.playground
+
+Example/PredicateEditor/Playground.playground/Contents.swift
+PredicateEditor.playground/Contents.swift
+
 # Xcode
 build/
 *.pbxuser

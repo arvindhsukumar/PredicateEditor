@@ -61,6 +61,7 @@
 		CB225B538C5606CE0B183DD0B57F1B21 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51DE6C3EBCD4AB78B996F6C710287BBC /* Foundation.framework */; };
 		CFF18C8A92A9D07AD3931CA67EFF9079 /* SeedStackViewController-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = F6646365768CED82EB631AB0DFB3EE49 /* SeedStackViewController-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D4590E121D37D8410014975A /* NSDate+TimeExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4590E111D37D8410014975A /* NSDate+TimeExtensions.swift */; };
+		D4590E141D37E8450014975A /* RowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4590E131D37E8450014975A /* RowView.swift */; };
 		D60CCC575F85D41D73042F8B041EFFA1 /* Pods-PredicateEditor_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 0DD4C0D6DE5E12DFD6A405EC90B68919 /* Pods-PredicateEditor_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DF40B15709B6CB2F43002159C92B2207 /* PredicateEditor-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A254E2547B995EA030A424C256DE2DEE /* PredicateEditor-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E822558B5472248CFDFEDE21A7640D95 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47A163CB4EFDBF24100AC9001CF2D402 /* UIKit.framework */; };
@@ -202,6 +203,7 @@
 		C65FD0D91921C3AB7FAB2F4412E5B22B /* Section.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
 		CF279103C7980F0184056AA64196899D /* PredicateComparable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PredicateComparable.swift; sourceTree = "<group>"; };
 		D4590E111D37D8410014975A /* NSDate+TimeExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+TimeExtensions.swift"; sourceTree = "<group>"; };
+		D4590E131D37E8450014975A /* RowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RowView.swift; sourceTree = "<group>"; };
 		D67CE70AB6278375090AFE2D57E80AC7 /* StackViewController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StackViewController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DADD5DA186C2A0DA8DCB163711A2D0F7 /* PredicateEditor.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = PredicateEditor.xcconfig; sourceTree = "<group>"; };
 		E0A3CF018D9CDEBEF92706A0A13AC516 /* SectionView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SectionView.swift; sourceTree = "<group>"; };
@@ -494,6 +496,7 @@
 				3DAAF7E9707A61FBCEAB1303E58EEBB7 /* SectionViewController.swift */,
 				5BE196ACA577D3ED228F9D17E9462C91 /* Value.swift */,
 				D4590E111D37D8410014975A /* NSDate+TimeExtensions.swift */,
+				D4590E131D37E8450014975A /* RowView.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -811,6 +814,7 @@
 				C29B73F2BEB6353D82DE6066A0388A5A /* ReplaceMe.swift in Sources */,
 				01D5A751B88EF94932C9B16F2E2AA736 /* Row.swift in Sources */,
 				3159A31E72790D1FD9C4D43FE0C35225 /* RowStackView.swift in Sources */,
+				D4590E141D37E8450014975A /* RowView.swift in Sources */,
 				55B726B38381BD7A9EA0B1A44AEDE8FA /* Section.swift in Sources */,
 				0E5BCE5DB16515BDB0D0C8E1BF5EA7D1 /* SectionView.swift in Sources */,
 				5AF0A5AC1B8B42F982489C591A48BD49 /* SectionViewController.swift in Sources */,

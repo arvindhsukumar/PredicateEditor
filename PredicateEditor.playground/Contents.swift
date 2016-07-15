@@ -3,3 +3,7 @@
 import UIKit
 
 var str = "Hello, playground"
+
+let vc = UIViewController()
+vc.view.backgroundColor = UIColor.blueColor()
+vc.view.frame

@@ -50,26 +50,28 @@ class SectionViewController: UIViewController {
     }
 }
 
-extension SectionViewController: SectionDelegate, SectionDataSource {
+extension SectionViewController: SectionViewDelegate, SectionViewDataSource {
     func sectionViewTitle() -> String {
         return "test"
     }
 
     func sectionViewNumberOfRows() -> Int {
-        return 2
+        return section.rows.count
     }
 
     func sectionViewRowForItemAtIndex(index: Int) -> UIView {
-        let view = UIView(frame: CGRectMake(0,0,200,100))
-        view.translatesAutoresizingMaskIntoConstraints = false
-        let label = UILabel()
-        label.text = "Item \(index)"
-        view.addSubview(label)
-        label.snp_makeConstraints { (make) in
-            make.edges.equalTo(view).inset(10).priority(990)
-        }
-        view.backgroundColor = UIColor.redColor()
-
+        let view = RowView(frame: CGRectZero)
+        view.delegate = self
+        view.backgroundColor = UIColor.whiteColor()
+        let row = section.rows[index]
+        view.configureWithRow(row)
         return view
+    }
+}
+
+extension SectionViewController: RowViewDelegate {
+    func didTapKeyPathButton(index: Int) {
+        let row = section.rows[index]
+        print(row.descriptor?.keyPath)
     }
 }

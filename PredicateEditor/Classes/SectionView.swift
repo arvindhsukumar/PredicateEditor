@@ -10,19 +10,19 @@ import UIKit
 import SnapKit
 import StackViewController
 
-@objc protocol SectionDelegate {
+@objc protocol SectionViewDelegate {
 
 }
 
-@objc protocol SectionDataSource {
+@objc protocol SectionViewDataSource {
     func sectionViewTitle() -> String
     func sectionViewNumberOfRows() -> Int
     func sectionViewRowForItemAtIndex(index: Int) -> UIView
 }
 
 public class SectionView: UIView {
-    weak var delegate: SectionDelegate?
-    weak var dataSource: SectionDataSource?
+    weak var delegate: SectionViewDelegate?
+    weak var dataSource: SectionViewDataSource?
     var titleLabel: UILabel!
     var rowStackView: UIStackView!
 

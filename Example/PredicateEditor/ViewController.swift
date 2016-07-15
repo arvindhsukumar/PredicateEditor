@@ -16,6 +16,13 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         let section = Section(title: "Test", keyPaths: [KeyPathDescriptor(keyPath:"name", displayString: "Name", propertyType: .String)])
+        
+        let descriptor = KeyPathDescriptor(keyPath: "score", displayString: "Score", propertyType: KeyPathPropertyType.Number)
+        let comparisonType: KeyPathComparisonType = .IsGreaterThan
+        let value = 30
+        let row = Row(descriptor: descriptor, comparisonType: comparisonType, value: value)
+        section.append(row!)
+        
         let predicateEditorVC = PredicateEditorViewController(sections: [section])
         addChildViewController(predicateEditorVC)
         view.addSubview(predicateEditorVC.view)
