@@ -11,7 +11,7 @@ import SnapKit
 import StackViewController
 
 @objc protocol SectionViewDelegate {
-
+    func sectionViewWillInsertRow()
 }
 
 @objc protocol SectionViewDataSource {
@@ -26,19 +26,46 @@ public class SectionView: UIView {
     var titleLabel: UILabel!
     var rowStackView: UIStackView!
     var rowViews: [Int: UIView] = [:]
-
+    
+    let newRowView: UIView = {
+        let view = UIView(frame: CGRectZero)
+        view.backgroundColor = UIColor.whiteColor()
+        
+        let button = UIButton(type: UIButtonType.Custom)
+        button.setTitle("Add Filter", forState: UIControlState.Normal)
+        button.setTitleColor(UIColor.blueColor(), forState: UIControlState.Normal)
+        button.contentHorizontalAlignment = .Left
+        
+        view.addSubview(button)
+        button.snp_makeConstraints(closure: { (make) in
+            make.left.equalTo(view).offset(kHorizontalMargin)
+            make.right.equalTo(view).offset(-kHorizontalMargin).priority(990)
+            make.top.equalTo(view).offset(kVerticalMargin)
+            make.bottom.equalTo(view).offset(-kVerticalMargin)
+            make.height.equalTo(28)
+        })
+        
+        return view
+    }()
+    
+    var newRowButton: UIButton {
+        return newRowView.subviews.filter({ $0 is UIButton}).first as! UIButton
+    }
+    
     override public init(frame: CGRect) {
         super.init(frame: frame)
-        setup()
+        commonInit()
     }
     
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        commonInit()
     }
 
-    func setup() {
+    private func commonInit() {
         self.backgroundColor = UIColor(white: 0.9, alpha: 1)
         self.setContentHuggingPriority(UILayoutPriorityRequired, forAxis: UILayoutConstraintAxis.Vertical)
+        newRowButton.addTarget(self, action: #selector(SectionView.addNewRow(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         
         titleLabel = UILabel()
         titleLabel.font = UIFont.systemFontOfSize(17)
@@ -82,9 +109,11 @@ public class SectionView: UIView {
                 rowViews[i] = view
             }
         }
+        rowStackView.addArrangedSubview(newRowView)
     }
     
     func reloadItemAtIndex(index: Int) {
+        print("there are \(rowViews.count) rows")
         if index >= rowViews.count {
             return
         }        
@@ -98,5 +127,27 @@ public class SectionView: UIView {
             }
         }
         return nil
+    }
+}
+
+extension SectionView {
+    func addNewRow(sender: UIButton) {
+        delegate?.sectionViewWillInsertRow()
+    }
+    
+    func insertRowView() {
+        let insertIndex = rowViews.count
+        if let rowViewToInsert = dataSource?.sectionViewRowForItemAtIndex(insertIndex) {
+            rowViews[insertIndex] = rowViewToInsert
+            rowStackView.insertArrangedSubview(rowViewToInsert, atIndex: insertIndex)
+        }
+    }
+    
+    func removeAllRowViews() {
+        rowStackView.arrangedSubviews.forEach {
+            if $0 != newRowView{
+                $0.removeFromSuperview()
+            }
+        }
     }
 }

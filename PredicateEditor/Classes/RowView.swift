@@ -9,8 +9,8 @@
 import UIKit
 import SnapKit
 
-private let kHorizontalMargin: CGFloat = 16
-private let kVerticalMargin: CGFloat = 10
+let kHorizontalMargin: CGFloat = 16
+let kVerticalMargin: CGFloat = 10
 
 private let kButtonHeight: CGFloat = 36
 
@@ -132,6 +132,7 @@ class RowView: UIView {
         buttonStackView.addArrangedSubview(keyPathButton)
         buttonStackView.addArrangedSubview(comparisonButton)
     }
+    
     func setupStackView(){
         inputStackView.addArrangedSubview(self.inputTextField)
     }
@@ -154,7 +155,7 @@ class RowView: UIView {
                 inputPicker.setTitle(title, forState: .Normal)
             }
                         
-            let comparisonType = row.comparisonType ?? descriptor.propertyType.comparisonTypes().first            
+            let comparisonType = row.comparisonType
             comparisonButton.setTitle(comparisonType?.rawValue ?? "", forState: UIControlState.Normal)
         }
         else {

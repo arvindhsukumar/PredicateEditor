@@ -133,10 +133,10 @@ enum UnitType {
 }
 
 public struct KeyPathDescriptor {
-    var title: String!
-    var keyPath: String
-    var propertyType: KeyPathPropertyType = .String
-    var enumerationOptions: [String] = []
+    public var title: String!
+    public var keyPath: String
+    public var propertyType: KeyPathPropertyType = .String
+    public var enumerationOptions: [String] = []
     let commonInit = {
         (inout descriptor: KeyPathDescriptor) in
         

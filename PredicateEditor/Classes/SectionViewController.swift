@@ -58,6 +58,7 @@ extension SectionViewController {
         for property in section.keyPathTitles {
             let action = UIAlertAction(title: property, style: UIAlertActionStyle.Default, handler: { (action) in
                 row.descriptor = section.descriptorWithTitle(property)
+                row.comparisonType = row.comparisonType ?? row.descriptor?.propertyType.comparisonTypes().first
                 if let index = row.index {
                     self.sectionView.reloadItemAtIndex(index)
                 }
@@ -106,6 +107,7 @@ extension SectionViewController {
                 
                 row.baseValue = option
                 if let index = row.index {
+                    print("reloading item at index \(row.index)")
                     self.sectionView.reloadItemAtIndex(index)
                 }
             })
@@ -120,6 +122,11 @@ extension SectionViewController {
 }
 
 extension SectionViewController: SectionViewDelegate, SectionViewDataSource {
+    func sectionViewWillInsertRow() {
+        section.append(Row())
+        sectionView.insertRowView()        
+    }
+    
     func sectionViewTitle() -> String {
         return "test"
     }
@@ -139,7 +146,6 @@ extension SectionViewController: SectionViewDelegate, SectionViewDataSource {
             view.tag = index
             view.backgroundColor = UIColor.whiteColor()
             rowView = view
-            sectionView.rowViews[index] = view
         }
         let row = section.rows[index]
         rowView.configureWithRow(row)
@@ -174,6 +180,5 @@ extension SectionViewController: RowViewDelegate {
         guard let index = sectionView.indexOfRowView(rowView) else {return}
         let row = section.rows[index]
         row.baseValue = value
-        dump(try? row.toPredicate())
     }
 }

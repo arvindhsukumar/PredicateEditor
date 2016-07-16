@@ -53,6 +53,7 @@ public class Section {
 
 extension Section {
     public func append(row: Row) {
+        // TODO: Check if row's descriptor is included in section?
         rows.append(row)
         row.section = self
     }

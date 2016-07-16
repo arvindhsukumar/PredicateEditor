@@ -18,7 +18,12 @@ enum RowPredicateError: ErrorType {
             return value?.baseValue
         }
         set {
-            value?.baseValue = newValue
+            if value == nil {
+                value = ValueHolder(baseValue: newValue)
+            }
+            else {
+                value!.baseValue = newValue
+            }
         }
     }
     weak var section: Section?
