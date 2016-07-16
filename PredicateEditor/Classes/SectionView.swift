@@ -73,9 +73,7 @@ public class SectionView: UIView {
 
     func reloadData(){
         titleLabel.text = dataSource?.sectionViewTitle()
-        for sv in rowStackView.arrangedSubviews{
-            rowStackView.removeArrangedSubview(sv)
-        }
+        rowStackView.removeAllArrangedSubviews()
 
         for i in 0..<(dataSource?.sectionViewNumberOfRows() ?? 0) {
             if let view = dataSource?.sectionViewRowForItemAtIndex(i) {

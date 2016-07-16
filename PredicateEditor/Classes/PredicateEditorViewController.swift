@@ -44,6 +44,7 @@ public class PredicateEditorViewController: UIViewController {
             make.edges.equalTo(view)
         }
         stackViewController.didMoveToParentViewController(self)
+        stackViewController.stackViewContainer.scrollView.alwaysBounceVertical = true
 
         for section in sections {
             let sectionViewController = SectionViewController(section: section)

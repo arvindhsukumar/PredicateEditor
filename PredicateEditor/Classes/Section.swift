@@ -18,7 +18,11 @@ public class Section {
     public var keyPathDescriptors: [KeyPathDescriptor] = []
     public var rows: [Row] = []
     public var compoundPredicateType: SectionPredicateType = .OR
-    
+    var keyPathTitles: [String] {
+        return keyPathDescriptors.map({ (descriptor:KeyPathDescriptor) -> String in
+            return descriptor.displayString
+        })
+    }
     
     public init(title: String, keyPaths: [KeyPathDescriptor]){
         self.title = title
@@ -50,6 +54,7 @@ public class Section {
 extension Section {
     public func append(row: Row) {
         rows.append(row)
+        row.section = self
     }
     
     public func insertRow(row: Row, atIndex: Int){

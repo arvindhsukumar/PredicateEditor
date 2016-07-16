@@ -29,7 +29,6 @@ class SectionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        print(view.frame)
     }
 
     override func didReceiveMemoryWarning() {
@@ -50,6 +49,47 @@ class SectionViewController: UIViewController {
     }
 }
 
+extension SectionViewController {
+    func showKeyPathOptions(forRow row: Row) {
+        guard let section = row.section else {return}
+        
+        let sheet = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
+        
+        for property in section.keyPathTitles {
+            let action = UIAlertAction(title: property, style: UIAlertActionStyle.Default, handler: { (action) in
+                
+            })
+            sheet.addAction(action)
+        }
+        
+        sheet.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
+        
+        showViewController(sheet, sender: nil)
+    }
+    
+    func showComparisonOptions(forRow row: Row) {
+        guard let descriptor = row.descriptor else { return }
+        
+        let sheet = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
+        
+        let keyPathType = descriptor.propertyType
+        let comparisonOptions = keyPathType.comparisonTypes().map { (type) -> String in
+            return type.rawValue
+        }
+        
+        for comparison in comparisonOptions {
+            let action = UIAlertAction(title: comparison, style: UIAlertActionStyle.Default, handler: { (action) in
+                
+            })
+            sheet.addAction(action)
+        }
+        
+        sheet.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
+        
+        showViewController(sheet, sender: nil)
+    }
+}
+
 extension SectionViewController: SectionViewDelegate, SectionViewDataSource {
     func sectionViewTitle() -> String {
         return "test"
@@ -62,6 +102,7 @@ extension SectionViewController: SectionViewDelegate, SectionViewDataSource {
     func sectionViewRowForItemAtIndex(index: Int) -> UIView {
         let view = RowView(frame: CGRectZero)
         view.delegate = self
+        view.tag = index
         view.backgroundColor = UIColor.whiteColor()
         let row = section.rows[index]
         view.configureWithRow(row)
@@ -73,5 +114,12 @@ extension SectionViewController: RowViewDelegate {
     func didTapKeyPathButton(index: Int) {
         let row = section.rows[index]
         print(row.descriptor?.keyPath)
+        showKeyPathOptions(forRow: row)
+    }
+    
+    func didTapComparisonButton(index: Int) {
+        let row = section.rows[index]
+        print(row.comparisonType)
+        showComparisonOptions(forRow: row)
     }
 }

@@ -5,6 +5,11 @@
 import Foundation
 import Timepiece
 
+enum InputType {
+    case Text
+    case Picker
+}
+
 public enum KeyPathPropertyType {
     case String
     case Number
@@ -33,6 +38,15 @@ public enum KeyPathPropertyType {
                 return [.Is, .IsNot]
             default:
                 return []
+        }
+    }
+    
+    func inputType() -> InputType {
+        switch self {
+        case .String, .Number:
+            return .Text
+        default:
+            return .Picker
         }
     }
 }

@@ -13,6 +13,7 @@ enum RowPredicateError: ErrorType {
     public var descriptor: KeyPathDescriptor?
     public var comparisonType: KeyPathComparisonType?
     var value: ValueHolder?
+    weak var section: Section?
     
     required convenience public init?(descriptor: KeyPathDescriptor, comparisonType: KeyPathComparisonType, value: PredicateComparable?) {
         if !descriptor.propertyType.comparisonTypes().contains(comparisonType){

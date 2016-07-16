@@ -9,13 +9,16 @@
 import UIKit
 import SnapKit
 
-private let kSideMargin: CGFloat = 16
+private let kHorizontalMargin: CGFloat = 16
+private let kVerticalMargin: CGFloat = 10
+
 private let kButtonHeight: CGFloat = 36
 
 private let kButtonTint: UIColor = UIColor(red:0.34, green:0.15, blue:0.43, alpha:1.00)
 
 @objc protocol RowViewDelegate {
     func didTapKeyPathButton(index:Int)
+    func didTapComparisonButton(index:Int)
 }
 
 class RowView: UIView {
@@ -23,15 +26,17 @@ class RowView: UIView {
     let inputStackView: UIStackView = {
         let stackView = UIStackView(frame: CGRectZero)
         stackView.axis = .Horizontal
-        stackView.distribution = .Fill
+        stackView.distribution = .EqualSpacing
         return stackView
     }()
     var stackViewHeightConstraint: Constraint!
+    var stackViewBottomMarginConstraint: Constraint!
     
     let buttonStackView: UIStackView = {
         let stackView = UIStackView(frame: CGRectZero)
         stackView.axis = .Horizontal
         stackView.distribution = .FillProportionally
+        stackView.spacing = 8
         return stackView
     }()
 
@@ -42,9 +47,18 @@ class RowView: UIView {
         return textField
     }()
     
-    let keyPathButton: UIButton = {
+    let inputPicker: UIButton = {
         let button = UIButton(type: .Custom)
         button.setContentHuggingPriority(900, forAxis: UILayoutConstraintAxis.Horizontal)
+        button.setTitleColor(UIColor.blueColor(), forState: UIControlState.Normal)
+        button.contentHorizontalAlignment = .Left
+        button.setTitle("Picker!", forState: UIControlState.Normal)
+        return button
+    }()
+    
+    let keyPathButton: UIButton = {
+        let button = UIButton(type: .Custom)
+        button.setContentHuggingPriority(901, forAxis: UILayoutConstraintAxis.Horizontal)
         button.setTitleColor(kButtonTint, forState: UIControlState.Normal)
         return button
     }()
@@ -52,7 +66,7 @@ class RowView: UIView {
     let comparisonButton: UIButton = {
         let button = UIButton(type: .Custom)
         button.setContentHuggingPriority(900, forAxis: UILayoutConstraintAxis.Horizontal)
-        button.setTitleColor(kButtonTint, forState: UIControlState.Normal)
+        button.setTitleColor(UIColor.magentaColor(), forState: UIControlState.Normal)
         return button
     }()
     
@@ -71,49 +85,73 @@ class RowView: UIView {
         translatesAutoresizingMaskIntoConstraints = false
         
         keyPathButton.addTarget(self, action: #selector(RowView.didTapKeyPathButton(_:)), forControlEvents: .TouchUpInside)
-        addSubview(keyPathButton)
-        keyPathButton.snp_makeConstraints { (make) in
-            make.left.equalTo(self).offset(kSideMargin)
-            make.top.equalTo(self).offset(4)
-            make.height.equalTo(kButtonHeight)
+        comparisonButton.addTarget(self, action: #selector(RowView.didTapComparisonButton(_:)), forControlEvents: .TouchUpInside)
+
+        addSubview(buttonStackView)
+        setupButtonStackView()
+        buttonStackView.snp_makeConstraints { (make) in
+            make.left.equalTo(self).offset(kHorizontalMargin)
+            make.right.equalTo(self).offset(-kHorizontalMargin).priority(990)
+            make.top.equalTo(self).offset(kVerticalMargin)
+            make.height.equalTo(28)
         }
-        
-        addSubview(comparisonButton)
-        comparisonButton.snp_makeConstraints { (make) in
-            make.left.equalTo(keyPathButton.snp_right).offset(kSideMargin)
-            make.right.greaterThanOrEqualTo(self).offset(-kSideMargin).priority(750)
-            make.top.equalTo(self).offset(4)
-            make.height.equalTo(kButtonHeight)
-        }
-        
+                
         addSubview(inputStackView)
         inputStackView.snp_makeConstraints { (make) in
-            make.left.equalTo(self).offset(kSideMargin)
-            make.right.equalTo(self).offset(kSideMargin)
-            make.top.equalTo(keyPathButton.snp_bottom).offset(4)
+            make.left.equalTo(self).offset(kHorizontalMargin)
+            make.right.equalTo(self).offset(-kHorizontalMargin).priority(990)
+            make.top.equalTo(buttonStackView.snp_bottom).offset(0)
             self.stackViewHeightConstraint = make.height.equalTo(0).constraint
-            make.bottom.equalTo(self).offset(-4)
+            self.stackViewBottomMarginConstraint = make.bottom.equalTo(self).offset(-kVerticalMargin).constraint
         }
-        setupStackView()
 
     }
     
     func didTapKeyPathButton(sender: AnyObject) {
         delegate?.didTapKeyPathButton(self.tag)
-        self.stackViewHeightConstraint.updateOffset(kButtonHeight)
     }
     
+    func didTapComparisonButton(sender: AnyObject) {
+        delegate?.didTapComparisonButton(self.tag)
+    }
+    
+    func setupButtonStackView() {
+        buttonStackView.addArrangedSubview(keyPathButton)
+        buttonStackView.addArrangedSubview(comparisonButton)
+    }
     func setupStackView(){
         inputStackView.addArrangedSubview(self.inputTextField)
     }
     
     func configureWithRow(row: Row) {
-        keyPathButton.setTitle(row.descriptor?.keyPath ?? "Select", forState: UIControlState.Normal)
+        keyPathButton.setTitle(row.descriptor?.displayString ?? "Select", forState: UIControlState.Normal)
+        
         if let descriptor = row.descriptor {
-            comparisonButton.setTitle(row.comparisonType?.rawValue ?? "", forState: UIControlState.Normal)
+            showInputView()
+            inputStackView.removeAllArrangedSubviews()
+            if descriptor.propertyType.inputType() == .Text {
+                inputStackView.addArrangedSubview(inputTextField)
+            }
+            else {
+                inputStackView.addArrangedSubview(inputPicker)
+            }
+            
+            comparisonButton.setTitle(row.comparisonType?.rawValue ?? "", forState: UIControlState.Normal)            
         }
         else {
+            hideInputView()
             comparisonButton.setTitle("", forState: UIControlState.Normal)
         }
+        
+        setNeedsLayout()
+        layoutIfNeeded()
+    }
+    
+    private func hideInputView(){
+        self.stackViewHeightConstraint.updateOffset(0)
+    }
+    
+    private func showInputView(){
+        self.stackViewHeightConstraint.updateOffset(kButtonHeight)
     }
 }
