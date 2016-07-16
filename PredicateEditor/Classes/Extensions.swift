@@ -8,3 +8,12 @@
 
 import Foundation
 
+extension Dictionary {
+    func keysToArray() -> [Key] {
+        return Array(self.keys)
+    }
+    
+    func valuesToArray() -> [Value] {
+        return Array(self.values)
+    }
+}

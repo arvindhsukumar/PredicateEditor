@@ -17,8 +17,8 @@ private let kButtonHeight: CGFloat = 36
 private let kButtonTint: UIColor = UIColor(red:0.34, green:0.15, blue:0.43, alpha:1.00)
 
 @objc protocol RowViewDelegate {
-    func didTapKeyPathButton(index:Int)
-    func didTapComparisonButton(index:Int)
+    func didTapKeyPathButtonInRowView(rowView:RowView)
+    func didTapComparisonButtonInRowView(rowView:RowView)
 }
 
 class RowView: UIView {
@@ -108,11 +108,11 @@ class RowView: UIView {
     }
     
     func didTapKeyPathButton(sender: AnyObject) {
-        delegate?.didTapKeyPathButton(self.tag)
+        delegate?.didTapKeyPathButtonInRowView(self)
     }
     
     func didTapComparisonButton(sender: AnyObject) {
-        delegate?.didTapComparisonButton(self.tag)
+        delegate?.didTapComparisonButtonInRowView(self)
     }
     
     func setupButtonStackView() {

@@ -126,13 +126,15 @@ extension SectionViewController: SectionViewDelegate, SectionViewDataSource {
 }
 
 extension SectionViewController: RowViewDelegate {
-    func didTapKeyPathButton(index: Int) {
+    func didTapKeyPathButtonInRowView(rowView: RowView) {
+        guard let index = sectionView.rowViews.valuesToArray().indexOf(rowView) else {return}
         let row = section.rows[index]
         print(row.descriptor?.keyPath)
         showKeyPathOptions(forRow: row)
     }
     
-    func didTapComparisonButton(index: Int) {
+    func didTapComparisonButtonInRowView(rowView: RowView) {
+        guard let index = sectionView.rowViews.valuesToArray().indexOf(rowView) else {return}
         let row = section.rows[index]
         print(row.comparisonType)
         showComparisonOptions(forRow: row)
