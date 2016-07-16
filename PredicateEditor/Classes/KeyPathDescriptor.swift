@@ -136,15 +136,25 @@ public struct KeyPathDescriptor {
     var title: String!
     var keyPath: String
     var propertyType: KeyPathPropertyType = .String
+    var enumerationOptions: [String] = []
+    let commonInit = {
+        (inout descriptor: KeyPathDescriptor) in
+        
+        if descriptor.propertyType == .Boolean {
+            descriptor.enumerationOptions = ["true", "false"]
+        }
+    }
     
     public init(keyPath: String, title: String, propertyType: KeyPathPropertyType){
         self.keyPath = keyPath
         self.title = title
         self.propertyType = propertyType
+        commonInit(&self)
     }
     
     public init(keyPath: String, @noescape initialiser: (inout descriptor: KeyPathDescriptor)->()){
         self.keyPath = keyPath
-        initialiser(descriptor: &self)
+        initialiser(descriptor: &self)        
+        commonInit(&self)
     }
 }

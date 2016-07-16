@@ -19,6 +19,7 @@ private let kButtonTint: UIColor = UIColor(red:0.34, green:0.15, blue:0.43, alph
 protocol RowViewDelegate: class {
     func didTapKeyPathButtonInRowView(rowView:RowView)
     func didTapComparisonButtonInRowView(rowView:RowView)
+    func didTapInputButtonInRowView(rowView:RowView)
     func inputValueChangedInRowView(rowView: RowView, value: PredicateComparable?)
 }
 
@@ -88,8 +89,9 @@ class RowView: UIView {
         keyPathButton.addTarget(self, action: #selector(RowView.didTapKeyPathButton(_:)), forControlEvents: .TouchUpInside)
         comparisonButton.addTarget(self, action: #selector(RowView.didTapComparisonButton(_:)), forControlEvents: .TouchUpInside)
 
-        inputTextField.addTarget(self, action: #selector(RowView.inputTextFieldValueChanged(_:)), forControlEvents: UIControlEvents.EditingChanged)
-        
+        inputTextField.addTarget(self, action: #selector(RowView.inputTextFieldValueChanged(_:)), forControlEvents: .EditingChanged)
+        inputPicker.addTarget(self, action: #selector(RowView.didTapInputPickerButton(_:)), forControlEvents: .TouchUpInside)
+
         addSubview(buttonStackView)
         setupButtonStackView()
         buttonStackView.snp_makeConstraints { (make) in
@@ -122,6 +124,10 @@ class RowView: UIView {
         delegate?.inputValueChangedInRowView(self, value: sender.text)
     }
     
+    func didTapInputPickerButton(sender: UIButton) {
+        delegate?.didTapInputButtonInRowView(self)
+    }
+    
     func setupButtonStackView() {
         buttonStackView.addArrangedSubview(keyPathButton)
         buttonStackView.addArrangedSubview(comparisonButton)
@@ -141,8 +147,11 @@ class RowView: UIView {
             case .Text(let keyboardType):
                 inputStackView.addArrangedSubview(inputTextField)
                 inputTextField.keyboardType = keyboardType
+                inputTextField.text = row.baseValue as? String
             default:
                 inputStackView.addArrangedSubview(inputPicker)
+                let title = row.baseValue as? String ?? "Select Option"
+                inputPicker.setTitle(title, forState: .Normal)
             }
                         
             let comparisonType = row.comparisonType ?? descriptor.propertyType.comparisonTypes().first            

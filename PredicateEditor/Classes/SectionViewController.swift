@@ -95,6 +95,28 @@ extension SectionViewController {
         
         showViewController(sheet, sender: nil)
     }
+    
+    func showEnumerationOptions(forRow row: Row) {
+        guard let descriptor = row.descriptor where descriptor.enumerationOptions.count > 0 else { return }
+        
+        let sheet = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
+        
+        for option in descriptor.enumerationOptions {
+            let action = UIAlertAction(title: option, style: UIAlertActionStyle.Default, handler: { (action) in
+                
+                row.baseValue = option
+                if let index = row.index {
+                    self.sectionView.reloadItemAtIndex(index)
+                }
+            })
+            sheet.addAction(action)
+        }
+        
+        sheet.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
+        
+        showViewController(sheet, sender: nil)
+    }
+
 }
 
 extension SectionViewController: SectionViewDelegate, SectionViewDataSource {
@@ -127,17 +149,25 @@ extension SectionViewController: SectionViewDelegate, SectionViewDataSource {
 
 extension SectionViewController: RowViewDelegate {
     func didTapKeyPathButtonInRowView(rowView: RowView) {
-        guard let index = sectionView.rowViews.valuesToArray().indexOf(rowView) else {return}
+        guard let index = sectionView.indexOfRowView(rowView) else {return}
         let row = section.rows[index]
         print(row.descriptor?.keyPath)
         showKeyPathOptions(forRow: row)
     }
     
     func didTapComparisonButtonInRowView(rowView: RowView) {
-        guard let index = sectionView.rowViews.valuesToArray().indexOf(rowView) else {return}
+        guard let index = sectionView.indexOfRowView(rowView) else {return}
         let row = section.rows[index]
         print(row.comparisonType)
         showComparisonOptions(forRow: row)
+    }
+    
+    func didTapInputButtonInRowView(rowView: RowView) {
+        guard let index = sectionView.indexOfRowView(rowView) else {return}
+        let row = section.rows[index]
+        if row.descriptor?.propertyType == .Enumeration || row.descriptor?.propertyType == .Boolean {
+            showEnumerationOptions(forRow: row)
+        }
     }
     
     func inputValueChangedInRowView(rowView: RowView, value: PredicateComparable?) {
