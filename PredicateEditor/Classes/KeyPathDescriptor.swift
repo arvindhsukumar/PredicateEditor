@@ -6,7 +6,7 @@ import Foundation
 import Timepiece
 
 enum InputType {
-    case Text
+    case Text(UIKeyboardType)
     case Picker
 }
 
@@ -43,8 +43,10 @@ public enum KeyPathPropertyType {
     
     func inputType() -> InputType {
         switch self {
-        case .String, .Number:
-            return .Text
+        case .String:
+            return .Text(UIKeyboardType.Default)
+        case .Number:
+            return .Text(UIKeyboardType.DecimalPad)
         default:
             return .Picker
         }

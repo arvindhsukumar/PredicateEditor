@@ -90,4 +90,13 @@ public class SectionView: UIView {
         }        
         rowViews[index] = dataSource?.sectionViewRowForItemAtIndex(index)
     }
+    
+    func indexOfRowView(rowView: RowView) -> Int? {
+        for (i,r) in rowViews {
+            if r == rowView {
+                return i
+            }
+        }
+        return nil
+    }
 }

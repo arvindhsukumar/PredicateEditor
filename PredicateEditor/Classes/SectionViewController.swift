@@ -139,4 +139,11 @@ extension SectionViewController: RowViewDelegate {
         print(row.comparisonType)
         showComparisonOptions(forRow: row)
     }
+    
+    func inputValueChangedInRowView(rowView: RowView, value: PredicateComparable?) {
+        guard let index = sectionView.indexOfRowView(rowView) else {return}
+        let row = section.rows[index]
+        row.baseValue = value
+        dump(try? row.toPredicate())
+    }
 }

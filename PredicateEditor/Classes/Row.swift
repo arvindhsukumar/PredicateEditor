@@ -5,14 +5,22 @@
 import Foundation
 
 enum RowPredicateError: ErrorType {
-    case InsufficientData(keypath: String?)
-    case InvalidComparisonType(keypath: String)
+    case InsufficientData(keyPath: String?)
+    case InvalidComparisonType(keyPath: String)
 }
 
 @objc public class Row: NSObject {
     public var descriptor: KeyPathDescriptor?
     public var comparisonType: KeyPathComparisonType?
-    var value: ValueHolder?
+    private var value: ValueHolder?
+    public var baseValue: PredicateComparable? {
+        get {
+            return value?.baseValue
+        }
+        set {
+            value?.baseValue = newValue
+        }
+    }
     weak var section: Section?
     public var index: Int? {
         return section?.rows.indexOf(self)
@@ -30,13 +38,13 @@ enum RowPredicateError: ErrorType {
     func toPredicate() throws -> NSPredicate {
         //TODO: throw error?
         guard let descriptor = descriptor, comparisonType = comparisonType, let value = value else {
-            throw RowPredicateError.InsufficientData(keypath: self.descriptor?.keyPath ?? "")
+            throw RowPredicateError.InsufficientData(keyPath: self.descriptor?.keyPath ?? "")
         }
         
         if !descriptor.propertyType.comparisonTypes().contains(comparisonType) {
-            throw RowPredicateError.InvalidComparisonType(keypath: descriptor.keyPath)
+            throw RowPredicateError.InvalidComparisonType(keyPath: descriptor.keyPath)
         }
-        
+        print("base value = \(value.baseValue)")
         var predicate: NSPredicate!
         if let customPredicate = customPredicate(descriptor, comparison: comparisonType, arg: value.baseValue) where comparisonType.needsCustomPredicate() {
             predicate = customPredicate
@@ -48,7 +56,7 @@ enum RowPredicateError: ErrorType {
             var type: NSPredicateOperatorType = comparisonType.predicateOperatorType()!
             var options: NSComparisonPredicateOptions = (descriptor.propertyType == .String) ? [NSComparisonPredicateOptions.CaseInsensitivePredicateOption, NSComparisonPredicateOptions.DiacriticInsensitivePredicateOption] : []
             
-            let predicate = NSComparisonPredicate(leftExpression: lhsExpression,
+            predicate = NSComparisonPredicate(leftExpression: lhsExpression,
                                                   rightExpression: rhsExpression,
                                                   modifier: NSComparisonPredicateModifier.DirectPredicateModifier,
                                                   type: type,
@@ -57,50 +65,50 @@ enum RowPredicateError: ErrorType {
         return comparisonType.shouldNegate() ? NSCompoundPredicate(notPredicateWithSubpredicate: predicate) : predicate
     }
     
-    func customPredicate(keypathDescriptor: KeyPathDescriptor, comparison: KeyPathComparisonType, arg: PredicateComparable?) -> NSPredicate? {
-        let keypath = keypathDescriptor.keyPath
+    func customPredicate(keyPathDescriptor: KeyPathDescriptor, comparison: KeyPathComparisonType, arg: PredicateComparable?) -> NSPredicate? {
+        let keyPath = keyPathDescriptor.keyPath
         switch comparison {
         case .IsOn, .IsNotOn:
             let date = arg as? NSDate
-            return NSPredicate(format: "%K.beginningOfDay == %@", keypath, date?.beginningOfDay ?? NSNull())
+            return NSPredicate(format: "%K.beginningOfDay == %@", keyPath, date?.beginningOfDay ?? NSNull())
         case .IsExactly, .IsNotExactly:
             let date = arg as? NSDate
-            switch keypathDescriptor.propertyType {
+            switch keyPathDescriptor.propertyType {
             case .DateTime:
-                return NSPredicate(format: "%K == %@", keypath, date ?? NSNull())
+                return NSPredicate(format: "%K == %@", keyPath, date ?? NSNull())
             case .Time:
-                return NSPredicate(format: "%K.time == %@", keypath, date?.time ?? NSNull())
+                return NSPredicate(format: "%K.time == %@", keyPath, date?.time ?? NSNull())
             default:
                 return nil
             }
             
         case .IsAfter:
             let date = arg as? NSDate
-            switch keypathDescriptor.propertyType {
+            switch keyPathDescriptor.propertyType {
             case .Date:
-                return NSPredicate(format: "%K.endOfDay < %@", keypath, date?.beginningOfDay ?? NSNull())
+                return NSPredicate(format: "%K.endOfDay < %@", keyPath, date?.beginningOfDay ?? NSNull())
             case .Time:
-                return NSPredicate(format: "%K.time > %@", keypath, date?.time ?? NSNull())
+                return NSPredicate(format: "%K.time > %@", keyPath, date?.time ?? NSNull())
             case .DateTime:
-                return NSPredicate(format: "%K > %@", keypath, date ?? NSNull())
+                return NSPredicate(format: "%K > %@", keyPath, date ?? NSNull())
             default:
                 return nil
             }
         case .IsBefore:
             let date = arg as? NSDate
-            switch keypathDescriptor.propertyType {
+            switch keyPathDescriptor.propertyType {
             case .Date:
-                return NSPredicate(format: "%K.beginningOfDay > %@", keypath, date?.endOfDay ?? NSNull())
+                return NSPredicate(format: "%K.beginningOfDay > %@", keyPath, date?.endOfDay ?? NSNull())
             case .Time:
-                return NSPredicate(format: "%K.time < %@", keypath, date?.time ?? NSNull())
+                return NSPredicate(format: "%K.time < %@", keyPath, date?.time ?? NSNull())
             case .DateTime:
-                return NSPredicate(format: "%K < %@", keypath, date ?? NSNull())
+                return NSPredicate(format: "%K < %@", keyPath, date ?? NSNull())
             default:
                 return nil
             }
         case .IsToday:
             let date = arg as? NSDate
-            return NSPredicate(format: "%K.today == %@", keypath, NSDate.today())
+            return NSPredicate(format: "%K.today == %@", keyPath, NSDate.today())
         default:
             return nil
         }

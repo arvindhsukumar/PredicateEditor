@@ -16,9 +16,10 @@ private let kButtonHeight: CGFloat = 36
 
 private let kButtonTint: UIColor = UIColor(red:0.34, green:0.15, blue:0.43, alpha:1.00)
 
-@objc protocol RowViewDelegate {
+protocol RowViewDelegate: class {
     func didTapKeyPathButtonInRowView(rowView:RowView)
     func didTapComparisonButtonInRowView(rowView:RowView)
+    func inputValueChangedInRowView(rowView: RowView, value: PredicateComparable?)
 }
 
 class RowView: UIView {
@@ -87,6 +88,8 @@ class RowView: UIView {
         keyPathButton.addTarget(self, action: #selector(RowView.didTapKeyPathButton(_:)), forControlEvents: .TouchUpInside)
         comparisonButton.addTarget(self, action: #selector(RowView.didTapComparisonButton(_:)), forControlEvents: .TouchUpInside)
 
+        inputTextField.addTarget(self, action: #selector(RowView.inputTextFieldValueChanged(_:)), forControlEvents: UIControlEvents.EditingChanged)
+        
         addSubview(buttonStackView)
         setupButtonStackView()
         buttonStackView.snp_makeConstraints { (make) in
@@ -115,6 +118,10 @@ class RowView: UIView {
         delegate?.didTapComparisonButtonInRowView(self)
     }
     
+    func inputTextFieldValueChanged(sender: UITextField) {
+        delegate?.inputValueChangedInRowView(self, value: sender.text)
+    }
+    
     func setupButtonStackView() {
         buttonStackView.addArrangedSubview(keyPathButton)
         buttonStackView.addArrangedSubview(comparisonButton)
@@ -129,13 +136,15 @@ class RowView: UIView {
         if let descriptor = row.descriptor {
             showInputView()
             inputStackView.removeAllArrangedSubviews()
-            if descriptor.propertyType.inputType() == .Text {
+            
+            switch descriptor.propertyType.inputType() {
+            case .Text(let keyboardType):
                 inputStackView.addArrangedSubview(inputTextField)
-            }
-            else {
+                inputTextField.keyboardType = keyboardType
+            default:
                 inputStackView.addArrangedSubview(inputPicker)
             }
-            
+                        
             let comparisonType = row.comparisonType ?? descriptor.propertyType.comparisonTypes().first            
             comparisonButton.setTitle(comparisonType?.rawValue ?? "", forState: UIControlState.Normal)
         }
@@ -155,4 +164,8 @@ class RowView: UIView {
     private func showInputView(){
         self.stackViewHeightConstraint.updateOffset(kButtonHeight)
     }
+}
+
+extension RowView: UITextFieldDelegate {
+    
 }
