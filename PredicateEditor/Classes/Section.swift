@@ -20,7 +20,7 @@ public class Section {
     public var compoundPredicateType: SectionPredicateType = .OR
     var keyPathTitles: [String] {
         return keyPathDescriptors.map({ (descriptor:KeyPathDescriptor) -> String in
-            return descriptor.displayString
+            return descriptor.title
         })
     }
     
@@ -67,5 +67,13 @@ extension Section {
                 rows.removeAtIndex(i)
             }
         }
+    }
+}
+
+extension Section {
+    func descriptorWithTitle(title: String) -> KeyPathDescriptor? {
+        return keyPathDescriptors.filter({ (descriptor:KeyPathDescriptor) -> Bool in
+            return descriptor.title == title
+        }).first
     }
 }

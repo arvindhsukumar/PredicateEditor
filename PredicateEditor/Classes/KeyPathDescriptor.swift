@@ -131,13 +131,13 @@ enum UnitType {
 }
 
 public struct KeyPathDescriptor {
-    var displayString: String!
+    var title: String!
     var keyPath: String
     var propertyType: KeyPathPropertyType = .String
     
-    public init(keyPath: String, displayString: String, propertyType: KeyPathPropertyType){
+    public init(keyPath: String, title: String, propertyType: KeyPathPropertyType){
         self.keyPath = keyPath
-        self.displayString = displayString
+        self.title = title
         self.propertyType = propertyType
     }
     

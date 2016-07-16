@@ -12,7 +12,7 @@ import SnapKit
 class SectionViewController: UIViewController {
     var section: Section!
     var sectionView: SectionView!
-
+    
     convenience init(section:Section){
         self.init(nibName: nil, bundle: nil)
         self.section = section
@@ -57,7 +57,10 @@ extension SectionViewController {
         
         for property in section.keyPathTitles {
             let action = UIAlertAction(title: property, style: UIAlertActionStyle.Default, handler: { (action) in
-                
+                row.descriptor = section.descriptorWithTitle(property)
+                if let index = row.index {
+                    self.sectionView.reloadItemAtIndex(index)
+                }
             })
             sheet.addAction(action)
         }
@@ -80,6 +83,10 @@ extension SectionViewController {
         for comparison in comparisonOptions {
             let action = UIAlertAction(title: comparison, style: UIAlertActionStyle.Default, handler: { (action) in
                 
+                row.comparisonType = KeyPathComparisonType(rawValue: comparison)
+                if let index = row.index {
+                    self.sectionView.reloadItemAtIndex(index)
+                }
             })
             sheet.addAction(action)
         }
@@ -100,13 +107,21 @@ extension SectionViewController: SectionViewDelegate, SectionViewDataSource {
     }
 
     func sectionViewRowForItemAtIndex(index: Int) -> UIView {
-        let view = RowView(frame: CGRectZero)
-        view.delegate = self
-        view.tag = index
-        view.backgroundColor = UIColor.whiteColor()
+        var rowView: RowView!
+        if let view = sectionView.rowViews[index] {
+            rowView = view as! RowView
+        }
+        else {
+            let view = RowView(frame: CGRectZero)
+            view.delegate = self
+            view.tag = index
+            view.backgroundColor = UIColor.whiteColor()
+            rowView = view
+            sectionView.rowViews[index] = view
+        }
         let row = section.rows[index]
-        view.configureWithRow(row)
-        return view
+        rowView.configureWithRow(row)
+        return rowView
     }
 }
 

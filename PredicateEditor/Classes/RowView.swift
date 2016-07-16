@@ -124,7 +124,7 @@ class RowView: UIView {
     }
     
     func configureWithRow(row: Row) {
-        keyPathButton.setTitle(row.descriptor?.displayString ?? "Select", forState: UIControlState.Normal)
+        keyPathButton.setTitle(row.descriptor?.title ?? "Select", forState: UIControlState.Normal)
         
         if let descriptor = row.descriptor {
             showInputView()
@@ -136,7 +136,8 @@ class RowView: UIView {
                 inputStackView.addArrangedSubview(inputPicker)
             }
             
-            comparisonButton.setTitle(row.comparisonType?.rawValue ?? "", forState: UIControlState.Normal)            
+            let comparisonType = row.comparisonType ?? descriptor.propertyType.comparisonTypes().first            
+            comparisonButton.setTitle(comparisonType?.rawValue ?? "", forState: UIControlState.Normal)
         }
         else {
             hideInputView()

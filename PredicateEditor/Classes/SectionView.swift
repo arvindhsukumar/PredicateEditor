@@ -25,6 +25,7 @@ public class SectionView: UIView {
     weak var dataSource: SectionViewDataSource?
     var titleLabel: UILabel!
     var rowStackView: UIStackView!
+    var rowViews: [Int: UIView] = [:]
 
     override public init(frame: CGRect) {
         super.init(frame: frame)
@@ -78,7 +79,15 @@ public class SectionView: UIView {
         for i in 0..<(dataSource?.sectionViewNumberOfRows() ?? 0) {
             if let view = dataSource?.sectionViewRowForItemAtIndex(i) {
                 rowStackView.addArrangedSubview(view)
+                rowViews[i] = view
             }
         }
+    }
+    
+    func reloadItemAtIndex(index: Int) {
+        if index >= rowViews.count {
+            return
+        }        
+        rowViews[index] = dataSource?.sectionViewRowForItemAtIndex(index)
     }
 }

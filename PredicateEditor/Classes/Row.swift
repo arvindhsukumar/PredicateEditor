@@ -14,7 +14,9 @@ enum RowPredicateError: ErrorType {
     public var comparisonType: KeyPathComparisonType?
     var value: ValueHolder?
     weak var section: Section?
-    
+    public var index: Int? {
+        return section?.rows.indexOf(self)
+    }
     required convenience public init?(descriptor: KeyPathDescriptor, comparisonType: KeyPathComparisonType, value: PredicateComparable?) {
         if !descriptor.propertyType.comparisonTypes().contains(comparisonType){
             return nil
