@@ -17,3 +17,13 @@ extension Dictionary {
         return Array(self.values)
     }
 }
+
+extension Bool {
+    func toString() -> String {
+        return self ? "true" : "false"
+    }
+    
+    static func fromString(string: String) -> Bool {
+        return string == "true" ? true : false
+    }
+}

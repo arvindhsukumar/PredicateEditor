@@ -6,25 +6,26 @@ import Foundation
 import Timepiece
 
 enum InputType {
-    case Text(UIKeyboardType)
+    case Text
     case Picker
 }
 
 public enum KeyPathPropertyType {
     case String
-    case Number
+    case Int
+    case Float
+    case Double
     case Boolean
     case Date
     case Time
     case DateTime
     case Array
-    case Enumeration
     
     public func comparisonTypes() -> [KeyPathComparisonType] {
         switch self {
             case .String:
                 return [.Is, .IsNot, .Contains, .DoesNotContain, .BeginsWith, .EndsWith]
-            case .Number:
+            case .Int, .Float, .Double:
                 return [.Is, .IsNot, .IsGreaterThan, .IsGreaterThanOrEqualTo, .IsLessThan, .IsLessThanOrEqualTo]
             case .Date:
                 return [.IsOn, .IsNotOn, .IsAfter, .IsBefore, .IsToday, .IsBetween]
@@ -34,21 +35,10 @@ public enum KeyPathPropertyType {
                 return [.IsExactly, .IsNotExactly, .IsAfter, .IsBefore, .IsBetween]
             case .Array:
                 return [.Contains]
-            case .Enumeration, .Boolean:
+            case .Boolean:
                 return [.Is, .IsNot]
             default:
                 return []
-        }
-    }
-    
-    func inputType() -> InputType {
-        switch self {
-        case .String:
-            return .Text(UIKeyboardType.Default)
-        case .Number:
-            return .Text(UIKeyboardType.DecimalPad)
-        default:
-            return .Picker
         }
     }
 }
@@ -112,13 +102,6 @@ public enum KeyPathComparisonType: String {
                 return false
         }
     }
-    
-    func needsCustomPredicate() -> Bool {
-        if let _ = predicateOperatorType() {
-            return false
-        }
-        return true
-    }
 }
 
 enum UnitType {
@@ -157,4 +140,30 @@ public struct KeyPathDescriptor {
         initialiser(descriptor: &self)        
         commonInit(&self)
     }
+}
+
+extension KeyPathDescriptor {
+    func inputType() -> InputType {
+        if enumerationOptions.count > 0 {
+            return .Picker
+        }
+        switch propertyType {
+        case .String, .Int, .Float, .Double:
+            return .Text
+        default:
+            return .Picker
+        }
+    }
+    
+    func keyboardType() -> UIKeyboardType {
+        switch propertyType {
+        case .Int:
+            return .NumberPad
+        case .Float, .Double:
+            return .DecimalPad
+        default:
+            return .Default
+        }
+    }
+
 }

@@ -11,19 +11,23 @@ import PredicateEditor
 import StackViewController
 
 class ViewController: UIViewController {
-
+    var predicateEditor: PredicateEditorViewController!
+    
+    @IBAction func generatePredicate(sender: AnyObject) {
+        try? predicateEditor.predicates()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         let section = createSection()
         createRows(inSection: section)
         
-        let predicateEditorVC = PredicateEditorViewController(sections: [section])
-        addChildViewController(predicateEditorVC)
-        view.addSubview(predicateEditorVC.view)
-        predicateEditorVC.didMoveToParentViewController(self)
+        predicateEditor = PredicateEditorViewController(sections: [section])
+        addChildViewController(predicateEditor)
+        view.addSubview(predicateEditor.view)
+        predicateEditor.didMoveToParentViewController(self)
         
-        predicateEditorVC.view.snp_makeConstraints { (make) in
+        predicateEditor.view.snp_makeConstraints { (make) in
             make.edges.equalTo(view)
         }
         
@@ -49,11 +53,11 @@ class ViewController: UIViewController {
     private func createRows(inSection section: Section) {
         let descriptor = KeyPathDescriptor(keyPath: "name", title: "Name", propertyType: KeyPathPropertyType.String)
         let comparisonType: KeyPathComparisonType = .Is
-        let value = "John"
+        let value = 2.24
         let row = Row(descriptor: descriptor, comparisonType: comparisonType, value: value)
         section.append(row!)
         
-        let descriptor2 = KeyPathDescriptor(keyPath: "dob", title: "Date of Birth", propertyType: KeyPathPropertyType.DateTime)
+        let descriptor2 = KeyPathDescriptor(keyPath: "dob", title: "Date of Birth", propertyType: KeyPathPropertyType.Time)
         let comparisonType2: KeyPathComparisonType = .IsAfter
         let value2 = NSDate(timeIntervalSince1970: 321312311)
         let row2 = Row(descriptor: descriptor2, comparisonType: comparisonType2, value: value2)

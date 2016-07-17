@@ -20,7 +20,7 @@ protocol RowViewDelegate: class {
     func didTapKeyPathButtonInRowView(rowView:RowView)
     func didTapComparisonButtonInRowView(rowView:RowView)
     func didTapInputButtonInRowView(rowView:RowView)
-    func inputValueChangedInRowView(rowView: RowView, value: PredicateComparable?)
+    func inputValueChangedInRowView(rowView: RowView, value: String?)
 }
 
 class RowView: UIView {
@@ -144,15 +144,15 @@ class RowView: UIView {
             showInputView()
             inputStackView.removeAllArrangedSubviews()
             
-            switch descriptor.propertyType.inputType() {
-            case .Text(let keyboardType):
-                inputStackView.addArrangedSubview(inputTextField)
-                inputTextField.keyboardType = keyboardType
-                inputTextField.text = row.baseValue as? String
-            default:
+            if descriptor.inputType() == .Picker || descriptor.enumerationOptions.count > 0 {
                 inputStackView.addArrangedSubview(inputPicker)
-                let title = row.baseValue as? String ?? "Select Option"
+                let title = row.stringValue ?? "Select Option"
                 inputPicker.setTitle(title, forState: .Normal)
+            }
+            else {
+                inputStackView.addArrangedSubview(inputTextField)
+                inputTextField.keyboardType = descriptor.keyboardType()
+                inputTextField.text = row.stringValue
             }
                         
             let comparisonType = row.comparisonType

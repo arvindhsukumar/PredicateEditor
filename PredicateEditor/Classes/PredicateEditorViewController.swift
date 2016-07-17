@@ -14,7 +14,7 @@ public class PredicateEditorViewController: UIViewController {
     var sections: [Section] = []
     var sectionViews: [SectionView] = []
     private let stackViewController: StackViewController
-
+    
     public convenience init(sections:[Section]) {
         self.init()
         self.sections = sections
@@ -59,4 +59,12 @@ public class PredicateEditorViewController: UIViewController {
 
 }
 
+public extension PredicateEditorViewController {
+    public func predicates() throws -> [NSPredicate] {
+        return try sections.map({ (section) -> NSPredicate in
+            dump(try section.predicates())
+            return try section.compoundPredicate()
+        })
+    }
+}
 

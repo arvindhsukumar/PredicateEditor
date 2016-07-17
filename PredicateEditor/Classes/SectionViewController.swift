@@ -68,7 +68,7 @@ extension SectionViewController {
         
         sheet.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
         
-        showViewController(sheet, sender: nil)
+        presentViewController(sheet, animated: true, completion: nil)
     }
     
     func showComparisonOptions(forRow row: Row) {
@@ -94,7 +94,7 @@ extension SectionViewController {
         
         sheet.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
         
-        showViewController(sheet, sender: nil)
+        presentViewController(sheet, animated: true, completion: nil)
     }
     
     func showEnumerationOptions(forRow row: Row) {
@@ -105,7 +105,7 @@ extension SectionViewController {
         for option in descriptor.enumerationOptions {
             let action = UIAlertAction(title: option, style: UIAlertActionStyle.Default, handler: { (action) in
                 
-                row.baseValue = option
+                row.stringValue = option
                 if let index = row.index {
                     print("reloading item at index \(row.index)")
                     self.sectionView.reloadItemAtIndex(index)
@@ -116,7 +116,7 @@ extension SectionViewController {
         
         sheet.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
         
-        showViewController(sheet, sender: nil)
+        presentViewController(sheet, animated: true, completion: nil)
     }
 
 }
@@ -171,14 +171,14 @@ extension SectionViewController: RowViewDelegate {
     func didTapInputButtonInRowView(rowView: RowView) {
         guard let index = sectionView.indexOfRowView(rowView) else {return}
         let row = section.rows[index]
-        if row.descriptor?.propertyType == .Enumeration || row.descriptor?.propertyType == .Boolean {
+        if let options = row.descriptor?.enumerationOptions where options.count > 0 {
             showEnumerationOptions(forRow: row)
         }
     }
     
-    func inputValueChangedInRowView(rowView: RowView, value: PredicateComparable?) {
+    func inputValueChangedInRowView(rowView: RowView, value: String?) {
         guard let index = sectionView.indexOfRowView(rowView) else {return}
         let row = section.rows[index]
-        row.baseValue = value
+        row.stringValue = value
     }
 }

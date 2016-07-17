@@ -65,9 +65,9 @@ extension Section {
     }
 }
 
-let descriptor = KeyPathDescriptor(keyPath: "score", displayString: "Score", propertyType: KeyPathPropertyType.Number)
+let descriptor = KeyPathDescriptor(keyPath: "age", displayString: "Age", propertyType: KeyPathPropertyType.Number)
 let comparisonType: KeyPathComparisonType = .IsGreaterThan
-let value = 30
+let value: Float = 30.4
 let row = Row(descriptor: descriptor, comparisonType: comparisonType, value: value)
 
 let descriptor2 = KeyPathDescriptor(keyPath: "dob", displayString: "Name", propertyType: KeyPathPropertyType.DateTime)
@@ -80,11 +80,12 @@ row2.value = ValueHolder(baseValue: value2)
 
 
 let section = Section(title: "Test", keyPaths: [])
-//section.append(row!)
-section.append(row2)
+section.append(row!)
+//section.append(row2)
 
 do {
     let ps = try section.predicates()
+    dump(ps)
 }
 catch {
     print(error)
@@ -105,6 +106,6 @@ class Person: NSObject {
     }
 }
 
-let people = [Person(name: "Johnathan", funny: false, score: 25.2), Person(name: "john", age: 27), Person(name: "ben", age: 24, dob: NSDate(timeIntervalSince1970: 321312312))]
+let people = [Person(name: "Johnathan", funny: false, score: 25.2), Person(name: "john", age: 41), Person(name: "ben", age: 24, dob: NSDate(timeIntervalSince1970: 321312312))]
 let array = (people as NSArray)
 dump(try? (people as NSArray).filteredArrayUsingPredicate(section.ORPredicate()))
