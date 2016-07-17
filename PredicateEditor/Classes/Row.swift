@@ -76,15 +76,14 @@ let valueDateTimeFormatter: NSDateFormatter = {
         case .Boolean:
             returnValue = Bool.fromString(stringValue)
         case .Date:
-            returnValue = valueDateFormatter.dateFromString(stringValue)?.beginningOfDay
+            returnValue = valueDateFormatter.dateFromString(stringValue)
         case .Time:
-            returnValue = valueTimeFormatter.dateFromString(stringValue)?.time
+            returnValue = valueTimeFormatter.dateFromString(stringValue)
         case .DateTime:
             returnValue = valueDateTimeFormatter.dateFromString(stringValue)
         default:
             break
         }
-        
         return returnValue
     }
     
@@ -115,6 +114,10 @@ let valueDateTimeFormatter: NSDateFormatter = {
             return String(stringConvertible)
         }
         return nil
+    }
+    
+    func resetBaseValue() {
+        value = stringValueToBase(stringValue)
     }
     
     func toPredicate() throws -> NSPredicate {

@@ -59,6 +59,7 @@ extension SectionViewController {
             let action = UIAlertAction(title: property, style: UIAlertActionStyle.Default, handler: { (action) in
                 row.descriptor = section.descriptorWithTitle(property)
                 row.comparisonType = row.comparisonType ?? row.descriptor?.propertyType.comparisonTypes().first
+                row.resetBaseValue()
                 if let index = row.index {
                     self.sectionView.reloadItemAtIndex(index)
                 }

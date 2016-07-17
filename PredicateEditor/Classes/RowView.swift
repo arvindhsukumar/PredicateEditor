@@ -61,6 +61,7 @@ class RowView: UIView {
     let keyPathButton: UIButton = {
         let button = UIButton(type: .Custom)
         button.setContentHuggingPriority(901, forAxis: UILayoutConstraintAxis.Horizontal)
+        button.contentHorizontalAlignment = .Left
         button.setTitleColor(kButtonTint, forState: UIControlState.Normal)
         return button
     }()
@@ -68,6 +69,7 @@ class RowView: UIView {
     let comparisonButton: UIButton = {
         let button = UIButton(type: .Custom)
         button.setContentHuggingPriority(900, forAxis: UILayoutConstraintAxis.Horizontal)
+        button.contentHorizontalAlignment = .Left
         button.setTitleColor(UIColor.magentaColor(), forState: UIControlState.Normal)
         return button
     }()

@@ -41,7 +41,7 @@ class ViewController: UIViewController {
     private func createSection() -> Section {
         var keyPaths: [KeyPathDescriptor] = []
         
-        let kp1 = KeyPathDescriptor(keyPath:"name", title: "Name", propertyType: .String)
+        let kp1 = KeyPathDescriptor(keyPath:"name", title: "Name", propertyType: .Float)
         let kp2 = KeyPathDescriptor(keyPath:"dob", title: "Date Of Birth", propertyType: .Date)
         let kp3 = KeyPathDescriptor(keyPath:"isFunny", title: "Is Funny", propertyType: .Boolean)
         keyPaths = [kp1, kp2, kp3]
@@ -51,8 +51,8 @@ class ViewController: UIViewController {
     }
     
     private func createRows(inSection section: Section) {
-        let descriptor = KeyPathDescriptor(keyPath: "name", title: "Name", propertyType: KeyPathPropertyType.String)
-        let comparisonType: KeyPathComparisonType = .Is
+        let descriptor = KeyPathDescriptor(keyPath: "name", title: "Name", propertyType: KeyPathPropertyType.Float)
+        let comparisonType: KeyPathComparisonType = .IsLessThanOrEqualTo
         let value = 2.24
         let row = Row(descriptor: descriptor, comparisonType: comparisonType, value: value)
         section.append(row!)
