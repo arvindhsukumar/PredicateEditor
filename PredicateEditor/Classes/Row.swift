@@ -121,7 +121,6 @@ let valueDateTimeFormatter: NSDateFormatter = {
     }
     
     func toPredicate() throws -> NSPredicate {
-        //TODO: throw error?
         guard let descriptor = descriptor, comparisonType = comparisonType, let value = value else {
             throw RowPredicateError.InsufficientData(keyPath: self.descriptor?.keyPath ?? "")
         }

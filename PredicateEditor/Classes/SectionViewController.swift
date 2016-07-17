@@ -119,10 +119,33 @@ extension SectionViewController {
         
         presentViewController(sheet, animated: true, completion: nil)
     }
-
+    
+    func showCompoundPredicateOptions() {
+        let sheet = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
+        
+        for option in ["Any", "All"] {
+            let action = UIAlertAction(title: option, style: UIAlertActionStyle.Default, handler: { (action) in                
+                self.section.compoundPredicateType = (option == "Any" ? .OR : .AND)
+                self.sectionView.reloadCompoundPredicateButton()
+            })
+            sheet.addAction(action)
+        }
+        
+        sheet.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
+        
+        presentViewController(sheet, animated: true, completion: nil)
+    }
 }
 
 extension SectionViewController: SectionViewDelegate, SectionViewDataSource {
+    func sectionViewChooseCompoundPredicateType() {
+        showCompoundPredicateOptions()
+    }
+    
+    func sectionViewCompoundPredicateType() -> SectionPredicateType {
+        return section.compoundPredicateType
+    }
+    
     func sectionViewWillInsertRow() {
         section.append(Row())
         sectionView.insertRowView()        
