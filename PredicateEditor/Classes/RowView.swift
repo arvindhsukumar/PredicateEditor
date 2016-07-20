@@ -74,6 +74,13 @@ class RowView: UIView {
         return button
     }()
     
+    let separatorView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor(white: 0.9, alpha: 1)
+        return view
+    }()
+
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -111,7 +118,14 @@ class RowView: UIView {
             self.stackViewHeightConstraint = make.height.equalTo(0).constraint
             self.stackViewBottomMarginConstraint = make.bottom.equalTo(self).offset(-kVerticalMargin).constraint
         }
-
+        
+        addSubview(separatorView)
+        separatorView.snp_makeConstraints { (make) in
+            make.left.equalTo(self).offset(15)
+            make.right.equalTo(self)
+            make.bottom.equalTo(self)
+            make.height.equalTo(1)
+        }
     }
     
     func didTapKeyPathButton(sender: AnyObject) {

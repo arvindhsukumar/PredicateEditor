@@ -69,7 +69,7 @@ class ViewController: UIViewController {
         let row3 = Row(descriptor: descriptor3, comparisonType: comparisonType3, value: value3)
 //        section.append(row3!)
         
-        var descriptor4 = KeyPathDescriptor(keyPath: "designation", title: "Designation", propertyType: KeyPathPropertyType.Boolean)
+        var descriptor4 = KeyPathDescriptor(keyPath: "designation", title: "Designation", propertyType: KeyPathPropertyType.String)
         descriptor4.enumerationOptions = ["SE", "SSE"]
         let comparisonType4: KeyPathComparisonType = .Is
         let value4 = "SSE"

@@ -43,7 +43,7 @@ class SectionViewController: UIViewController {
         view.addSubview(sectionView)
         sectionView.snp_makeConstraints {
             make in
-            make.edges.equalTo(view)
+            make.edges.equalTo(view).inset(10)
         }
         sectionView.reloadData()
     }

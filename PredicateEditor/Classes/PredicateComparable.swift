@@ -53,4 +53,3 @@ extension Double: PredicateComparable {
         return NSNumber(double: self)
     }
 }
-

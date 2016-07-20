@@ -24,7 +24,6 @@ public class PredicateEditorViewController: UIViewController {
         stackViewController = StackViewController()
         stackViewController.stackViewContainer.separatorViewFactory = StackViewContainer.createSeparatorViewFactory()
         super.init(nibName: nil, bundle: nil)
-        edgesForExtendedLayout = .None
     }
 
     required public init?(coder aDecoder: NSCoder) {
