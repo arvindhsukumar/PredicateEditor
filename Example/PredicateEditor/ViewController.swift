@@ -75,6 +75,11 @@ class ViewController: UIViewController {
         let value4 = "SSE"
         let row4 = Row(descriptor: descriptor4, comparisonType: comparisonType4, value: nil)
         section.append(row4!)
+        
+        let descriptor5 = KeyPathDescriptor(keyPath: "createdAt", title: "Born At", propertyType: KeyPathPropertyType.DateTime)
+        let comparisonType5: KeyPathComparisonType = .IsAfter
+        let row5 = Row(descriptor: descriptor5, comparisonType: comparisonType5, value: nil)
+        section.append(row5!)
     }
 
 }
