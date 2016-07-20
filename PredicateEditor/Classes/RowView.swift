@@ -121,7 +121,7 @@ class RowView: UIView {
         
         addSubview(separatorView)
         separatorView.snp_makeConstraints { (make) in
-            make.left.equalTo(self).offset(15)
+            make.left.equalTo(self).offset(15).priority(990)
             make.right.equalTo(self)
             make.bottom.equalTo(self)
             make.height.equalTo(1)
