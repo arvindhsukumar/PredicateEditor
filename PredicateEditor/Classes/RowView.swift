@@ -79,6 +79,12 @@ class RowView: UIView {
         view.backgroundColor = UIColor(white: 0.9, alpha: 1)
         return view
     }()
+    
+    let inputAccessory: UIToolbar = {
+        let toolbar = UIToolbar(frame: CGRectMake(0,0,0,44))
+        toolbar.translucent = true
+        return toolbar
+    }()
 
     
     override init(frame: CGRect) {
@@ -98,7 +104,12 @@ class RowView: UIView {
         keyPathButton.addTarget(self, action: #selector(RowView.didTapKeyPathButton(_:)), forControlEvents: .TouchUpInside)
         comparisonButton.addTarget(self, action: #selector(RowView.didTapComparisonButton(_:)), forControlEvents: .TouchUpInside)
 
+        let resignTextFieldButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Done, target: self, action: #selector(RowView.resignTextFieldResponder))
+        let flexiSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
+        inputAccessory.setItems([flexiSpace, resignTextFieldButton], animated: false)
+        
         inputTextField.addTarget(self, action: #selector(RowView.inputTextFieldValueChanged(_:)), forControlEvents: .EditingChanged)
+        inputTextField.inputAccessoryView = inputAccessory
         inputPicker.addTarget(self, action: #selector(RowView.didTapInputPickerButton(_:)), forControlEvents: .TouchUpInside)
 
         addSubview(buttonStackView)
@@ -189,6 +200,10 @@ class RowView: UIView {
     
     private func showInputView(){
         self.stackViewHeightConstraint.updateOffset(kButtonHeight)
+    }
+    
+    func resignTextFieldResponder() {
+        inputTextField.resignFirstResponder()
     }
 }
 
