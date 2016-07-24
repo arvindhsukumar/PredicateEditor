@@ -27,7 +27,7 @@ public class SectionView: UIView {
     weak var dataSource: SectionViewDataSource?
     let titleLabel: UILabel = {
         let titleLabel = UILabel()
-        titleLabel.font = UIFont.systemFontOfSize(17)
+        titleLabel.font = UIFont.systemFontOfSize(20)
         return titleLabel
     }()
     
@@ -115,6 +115,11 @@ public class SectionView: UIView {
 
         let rowViewContainer = UIView(frame: CGRectZero)
         rowViewContainer.backgroundColor = UIColor.whiteColor()
+        rowViewContainer.layer.borderColor = UIColor(white: 0.95, alpha: 1).CGColor
+        rowViewContainer.layer.borderWidth = 1
+        rowViewContainer.layer.cornerRadius = 4
+        rowViewContainer.clipsToBounds = true
+
         addSubview(rowViewContainer)
         rowViewContainer.snp_makeConstraints {
             make in

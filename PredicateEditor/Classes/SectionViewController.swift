@@ -11,7 +11,15 @@ import SnapKit
 
 class SectionViewController: UIViewController {
     var section: Section!
-    var sectionView: SectionView!
+    let sectionView: SectionView = {
+        let sectionView = SectionView(frame: CGRectZero)
+        sectionView.layer.masksToBounds = false
+        sectionView.layer.borderColor = UIColor(white: 0.9, alpha: 1).CGColor
+        sectionView.layer.borderWidth = 1
+        sectionView.layer.cornerRadius = 4
+        return sectionView
+    }()
+
     
     convenience init(section:Section){
         self.init(nibName: nil, bundle: nil)
@@ -37,7 +45,6 @@ class SectionViewController: UIViewController {
     }
 
     func setupView(){
-        sectionView = SectionView(frame: CGRectZero)
         sectionView.delegate = self
         sectionView.dataSource = self
         view.addSubview(sectionView)
