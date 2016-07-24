@@ -28,11 +28,11 @@ public enum KeyPathPropertyType {
             case .Int, .Float, .Double:
                 return [.Is, .IsNot, .IsGreaterThan, .IsGreaterThanOrEqualTo, .IsLessThan, .IsLessThanOrEqualTo]
             case .Date:
-                return [.IsOn, .IsNotOn, .IsAfter, .IsBefore, .IsToday, .IsBetween]
+                return [.IsOn, .IsNotOn, .IsAfter, .IsBefore, .IsToday]
             case .Time:
-                return [.IsExactly, .IsNotExactly, .IsAfter, .IsBefore, .IsBetween]
+                return [.IsExactly, .IsNotExactly, .IsAfter, .IsBefore]
             case .DateTime:
-                return [.IsExactly, .IsNotExactly, .IsAfter, .IsBefore, .IsBetween]
+                return [.IsExactly, .IsNotExactly, .IsAfter, .IsBefore]
             case .Array:
                 return [.Contains]
             case .Boolean:
