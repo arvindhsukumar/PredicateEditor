@@ -32,9 +32,9 @@ TODO: Add long description of the pod here.
 
   s.source_files = 'PredicateEditor/Classes/**/*'
   
-  # s.resource_bundles = {
-  #   'PredicateEditor' => ['PredicateEditor/Assets/*.png']
-  # }
+  s.resource_bundles = {
+     'PredicateEditor' => ['PredicateEditor/Assets/*.png','PredicateEditor/Assets/*.xcassets']
+   }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'

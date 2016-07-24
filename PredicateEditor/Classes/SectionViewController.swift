@@ -181,7 +181,8 @@ extension SectionViewController: SectionViewDelegate, SectionViewDataSource {
 
     func sectionViewRowForItemAtIndex(index: Int) -> UIView {
         var rowView: RowView!
-        if let view = sectionView.rowViews[index] {
+        if index < sectionView.rowViews.count {
+            let view = sectionView.rowViews[index]
             rowView = view as! RowView
         }
         else {
@@ -208,6 +209,7 @@ extension SectionViewController: RowViewDelegate {
     
     func didTapComparisonButtonInRowView(rowView: RowView) {
         guard let index = sectionView.indexOfRowView(rowView) else {return}
+        print("did tap comparison in row \(index)")
         let row = section.rows[index]
         print(row.comparisonType)
         showComparisonOptions(forRow: row)
@@ -235,6 +237,13 @@ extension SectionViewController: RowViewDelegate {
             }
             showDatePicker(row, date: row.value as? NSDate, mode: datePickerMode)
         }
+    }
+    
+    func didTapDeleteButtonInRowView(rowView: RowView) {
+        guard let index = sectionView.indexOfRowView(rowView) else {return}
+        let row = section.rows[index]
+        sectionView.deleteRowAtIndex(index)
+        section.deleteRow(row)
     }
     
     func inputValueChangedInRowView(rowView: RowView, value: String?) {

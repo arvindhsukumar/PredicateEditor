@@ -19,6 +19,12 @@
     "ios": "9.0"
   },
   "source_files": "PredicateEditor/Classes/**/*",
+  "resource_bundles": {
+    "PredicateEditor": [
+      "PredicateEditor/Assets/*.png",
+      "PredicateEditor/Assets/*.xcassets"
+    ]
+  },
   "dependencies": {
     "SnapKit": [
       "~> 0.21"

@@ -20,9 +20,11 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         let section = createSection()
+        let section2 = createSection()
         createRows(inSection: section)
+        createRows(inSection: section2)
         
-        predicateEditor = PredicateEditorViewController(sections: [section])
+        predicateEditor = PredicateEditorViewController(sections: [section, section2])
         addChildViewController(predicateEditor)
         view.addSubview(predicateEditor.view)
         predicateEditor.didMoveToParentViewController(self)

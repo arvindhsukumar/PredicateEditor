@@ -15,7 +15,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  PredicateEditor: 0cc8118f694b89fa01452138459c08e4a547692e
+  PredicateEditor: 36c394b4a3c5dd9168131f8d8bf4f4627162d776
   SeedStackViewController: aece175e207147f58b2ca9c502ab2bd26eb00952
   SnapKit: bbad04cb016c7cead63965f16b00c09318d271ee
   Timepiece: b5038887b91d6eb70653173f4270e06b3abeac41

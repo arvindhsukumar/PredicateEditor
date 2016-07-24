@@ -57,7 +57,7 @@ public class SectionView: UIView {
         return rowStackView
     }()
     
-    var rowViews: [Int: UIView] = [:]
+    var rowViews: [UIView] = []
     
     let newRowView: UIView = {
         let view = UIView(frame: CGRectZero)
@@ -191,17 +191,14 @@ public class SectionView: UIView {
         print("there are \(rowViews.count) rows")
         if index >= rowViews.count {
             return
-        }        
-        rowViews[index] = dataSource?.sectionViewRowForItemAtIndex(index)
+        }
+        if let view = dataSource?.sectionViewRowForItemAtIndex(index) {
+            rowViews[index] = view
+        }
     }
     
     func indexOfRowView(rowView: RowView) -> Int? {
-        for (i,r) in rowViews {
-            if r == rowView {
-                return i
-            }
-        }
-        return nil
+        return rowViews.indexOf(rowView)
     }
 }
 
@@ -213,9 +210,18 @@ extension SectionView {
     func insertRowView() {
         let insertIndex = rowViews.count
         if let rowViewToInsert = dataSource?.sectionViewRowForItemAtIndex(insertIndex) {
-            rowViews[insertIndex] = rowViewToInsert
+            rowViews.append(rowViewToInsert)
             rowStackView.insertArrangedSubview(rowViewToInsert, atIndex: insertIndex)
         }
+    }
+    
+    func deleteRowAtIndex(index:Int) {
+        if index >= rowViews.count {
+            return
+        }
+        let rowViewToDelete = rowViews[index]
+        rowViews.removeAtIndex(index)
+        rowStackView.removeArrangedSubview(rowViewToDelete)
     }
     
     func removeAllRowViews() {

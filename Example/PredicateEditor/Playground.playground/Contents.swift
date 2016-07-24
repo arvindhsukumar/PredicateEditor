@@ -65,9 +65,9 @@ extension Section {
     }
 }
 
-let descriptor = KeyPathDescriptor(keyPath: "age", displayString: "Age", propertyType: KeyPathPropertyType.Number)
-let comparisonType: KeyPathComparisonType = .IsGreaterThan
-let value: Float = 30.4
+let descriptor = KeyPathDescriptor(keyPath: "name", displayString: "Age", propertyType: KeyPathPropertyType.String)
+let comparisonType: KeyPathComparisonType = .Is
+let value: String = "John"
 let row = Row(descriptor: descriptor, comparisonType: comparisonType, value: value)
 
 let descriptor2 = KeyPathDescriptor(keyPath: "dob", displayString: "Name", propertyType: KeyPathPropertyType.DateTime)

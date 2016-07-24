@@ -20,6 +20,7 @@ protocol RowViewDelegate: class {
     func didTapKeyPathButtonInRowView(rowView:RowView)
     func didTapComparisonButtonInRowView(rowView:RowView)
     func didTapInputButtonInRowView(rowView:RowView)
+    func didTapDeleteButtonInRowView(rowView:RowView)
     func inputValueChangedInRowView(rowView: RowView, value: String?)
 }
 
@@ -38,6 +39,15 @@ class RowView: UIView {
     }()
     var stackViewHeightConstraint: Constraint!
     var stackViewBottomMarginConstraint: Constraint!
+    
+    let deleteButton: UIButton = {
+        let button = UIButton(type: .Custom)
+        button.setContentHuggingPriority(900, forAxis: UILayoutConstraintAxis.Horizontal)
+        let image = UIImage(named: "delete", inBundle: NSBundle(forClass:RowView.self), compatibleWithTraitCollection: nil)?.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+        button.setImage(image, forState: UIControlState.Normal)
+        button.tintColor = UIColor(white: 0.7, alpha: 1)
+        return button
+    }()
     
     let buttonStackView: UIStackView = {
         let stackView = UIStackView(frame: CGRectZero)
@@ -123,9 +133,18 @@ class RowView: UIView {
         setupButtonStackView()
         buttonStackView.snp_makeConstraints { (make) in
             make.left.equalTo(self).offset(kHorizontalMargin)
-            make.right.equalTo(self).offset(-kHorizontalMargin).priority(990)
             make.top.equalTo(self).offset(kVerticalMargin)
             make.height.equalTo(28)
+        }
+        
+        deleteButton.addTarget(self, action: #selector(RowView.didTapDeleteButton(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        addSubview(deleteButton)
+        deleteButton.snp_makeConstraints { (make) in
+            make.width.equalTo(24)
+            make.height.equalTo(24)
+            make.centerY.equalTo(buttonStackView)
+            make.right.equalTo(self).offset(-8).priority(990)
+            make.left.equalTo(buttonStackView.snp_right).priority(750)
         }
                 
         addSubview(inputStackView)
@@ -167,6 +186,10 @@ class RowView: UIView {
     
     func didTapInputPickerButton(sender: UIButton) {
         delegate?.didTapInputButtonInRowView(self)
+    }
+    
+    func didTapDeleteButton(sender: UIButton) {
+        delegate?.didTapDeleteButtonInRowView(self)
     }
     
     func setupButtonStackView() {
