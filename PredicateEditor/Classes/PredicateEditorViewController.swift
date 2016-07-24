@@ -26,7 +26,12 @@ public struct PredicatorEditorConfig {
     }
 }
 
+@objc public protocol PredicateEditorDelegate {
+    func predicateEditorDidFinishWithPredicates(predicates: [NSPredicate])
+}
+
 public class PredicateEditorViewController: UIViewController {
+    public weak var delegate: PredicateEditorDelegate?
     var config: PredicatorEditorConfig!
     var sections: [Section] = []
     var sectionViews: [SectionView] = []
@@ -50,6 +55,10 @@ public class PredicateEditorViewController: UIViewController {
 
     override public func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Cancel, target: self, action: #selector(PredicateEditorViewController.dismiss))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Done, target: self, action: #selector(PredicateEditorViewController.createPredicateAndDismiss))
+
         edgesForExtendedLayout = .None
         setupStackView()
     }
@@ -70,6 +79,20 @@ public class PredicateEditorViewController: UIViewController {
             stackViewController.addItem(sectionViewController)
         }
     }
+    
+    func dismiss() {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func createPredicateAndDismiss() {
+        do {
+            try delegate?.predicateEditorDidFinishWithPredicates(predicates())
+            dismiss()
+        }
+        catch {
+            print("error")
+        }
+    }
 
     override public func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -82,6 +105,7 @@ public extension PredicateEditorViewController {
     public func predicates() throws -> [NSPredicate] {
         return try sections.map({ (section) -> NSPredicate in
             dump(try section.predicates())
+            print(section.compoundPredicateType)
             return try section.compoundPredicate()
         })
     }

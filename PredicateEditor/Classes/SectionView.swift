@@ -143,7 +143,7 @@ public class SectionView: UIView {
         addSubview(rowViewContainer)
         rowViewContainer.snp_makeConstraints {
             make in
-            make.top.equalTo(predicateTypeButtonContainer.snp_bottom).offset(4)
+            make.top.equalTo(predicateTypeButtonContainer.snp_bottom).offset(8)
             make.left.equalTo(self).offset(10)
             make.right.equalTo(self).offset(-10)
             make.bottom.equalTo(self).offset(-10)

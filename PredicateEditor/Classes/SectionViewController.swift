@@ -172,7 +172,7 @@ extension SectionViewController: SectionViewDelegate, SectionViewDataSource {
     }
     
     func sectionViewTitle() -> String {
-        return "test"
+        return section.title
     }
 
     func sectionViewNumberOfRows() -> Int {
