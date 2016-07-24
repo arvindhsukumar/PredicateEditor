@@ -10,6 +10,7 @@ import UIKit
 import SnapKit
 
 class SectionViewController: UIViewController {
+    var config: PredicatorEditorConfig!
     var section: Section!
     let sectionView: SectionView = {
         let sectionView = SectionView(frame: CGRectZero)
@@ -19,11 +20,11 @@ class SectionViewController: UIViewController {
         sectionView.layer.cornerRadius = 4
         return sectionView
     }()
-
     
-    convenience init(section:Section){
+    convenience init(section:Section, config: PredicatorEditorConfig){
         self.init(nibName: nil, bundle: nil)
         self.section = section
+        self.config = config
     }
 
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
@@ -47,6 +48,7 @@ class SectionViewController: UIViewController {
     func setupView(){
         sectionView.delegate = self
         sectionView.dataSource = self
+        sectionView.config = config
         view.addSubview(sectionView)
         sectionView.snp_makeConstraints {
             make in
@@ -185,6 +187,7 @@ extension SectionViewController: SectionViewDelegate, SectionViewDataSource {
         else {
             let view = RowView(frame: CGRectZero)
             view.delegate = self
+            view.config = config
             view.tag = index
             view.backgroundColor = UIColor.whiteColor()
             rowView = view

@@ -25,17 +25,23 @@ protocol SectionViewDataSource: class {
 public class SectionView: UIView {
     weak var delegate: SectionViewDelegate?
     weak var dataSource: SectionViewDataSource?
+    var config: PredicatorEditorConfig = PredicatorEditorConfig() {
+        didSet {
+            configureViews()
+        }
+    }
     let titleLabel: UILabel = {
         let titleLabel = UILabel()
         titleLabel.font = UIFont.systemFontOfSize(20)
+        titleLabel.textColor = UIColor(white: 0.2, alpha: 1)
         return titleLabel
     }()
     
     let compoundPredicateTypeButton: UIButton = {
         let button = UIButton(type: .Custom)
         button.setContentHuggingPriority(900, forAxis: UILayoutConstraintAxis.Horizontal)
-        button.setTitleColor(UIColor.blueColor(), forState: UIControlState.Normal)
-        button.backgroundColor = UIColor(white: 0.96, alpha: 1)
+        button.backgroundColor = UIColor.whiteColor()
+        button.contentHorizontalAlignment = .Left
         button.setTitle("Any or All?", forState: UIControlState.Normal)
         return button
     }()
@@ -58,9 +64,8 @@ public class SectionView: UIView {
         view.backgroundColor = UIColor.whiteColor()
         
         let button = UIButton(type: UIButtonType.Custom)
-        button.setTitle("Add Filter", forState: UIControlState.Normal)
-        button.setTitleColor(UIColor.blueColor(), forState: UIControlState.Normal)
         button.contentHorizontalAlignment = .Left
+        button.setTitle("Add Filter", forState: UIControlState.Normal)
         
         view.addSubview(button)
         button.snp_makeConstraints(closure: { (make) in
@@ -89,7 +94,6 @@ public class SectionView: UIView {
     }
 
     private func commonInit() {
-        self.backgroundColor = UIColor(white: 0.98, alpha: 1)
         self.setContentHuggingPriority(UILayoutPriorityRequired, forAxis: UILayoutConstraintAxis.Vertical)
         newRowButton.addTarget(self, action: #selector(SectionView.addNewRow(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         
@@ -103,14 +107,30 @@ public class SectionView: UIView {
             make.height.equalTo(44)
         }
         
-        compoundPredicateTypeButton.addTarget(self, action: #selector(SectionView.didTapCompoundPredicateTypeButton(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-        addSubview(compoundPredicateTypeButton)
-        compoundPredicateTypeButton.snp_makeConstraints {
+        let predicateTypeButtonContainer = UIView(frame: CGRectZero)
+        predicateTypeButtonContainer.backgroundColor = UIColor.whiteColor()
+        predicateTypeButtonContainer.layer.borderColor = UIColor(white: 0.95, alpha: 1).CGColor
+        predicateTypeButtonContainer.layer.borderWidth = 1
+        predicateTypeButtonContainer.layer.cornerRadius = 4
+        predicateTypeButtonContainer.clipsToBounds = true
+        
+        addSubview(predicateTypeButtonContainer)
+        predicateTypeButtonContainer.snp_makeConstraints {
             make in
-            make.top.equalTo(titleLabel.snp_bottom).offset(10)
+            make.top.equalTo(titleLabel.snp_bottom).offset(4)
             make.left.equalTo(self).offset(10)
             make.right.equalTo(self).offset(-10)
-            make.height.equalTo(40)
+            make.height.equalTo(44)
+        }
+        
+        compoundPredicateTypeButton.addTarget(self, action: #selector(SectionView.didTapCompoundPredicateTypeButton(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        predicateTypeButtonContainer.addSubview(compoundPredicateTypeButton)
+        compoundPredicateTypeButton.snp_makeConstraints {
+            make in
+            make.top.equalTo(predicateTypeButtonContainer)
+            make.left.equalTo(predicateTypeButtonContainer).offset(16)
+            make.right.equalTo(predicateTypeButtonContainer).offset(-16)
+            make.bottom.equalTo(predicateTypeButtonContainer)
         }
 
         let rowViewContainer = UIView(frame: CGRectZero)
@@ -123,7 +143,7 @@ public class SectionView: UIView {
         addSubview(rowViewContainer)
         rowViewContainer.snp_makeConstraints {
             make in
-            make.top.equalTo(compoundPredicateTypeButton.snp_bottom).offset(10)
+            make.top.equalTo(predicateTypeButtonContainer.snp_bottom).offset(4)
             make.left.equalTo(self).offset(10)
             make.right.equalTo(self).offset(-10)
             make.bottom.equalTo(self).offset(-10)
@@ -136,6 +156,12 @@ public class SectionView: UIView {
         
         reloadCompoundPredicateButton()
         reloadData()
+    }
+    
+    func configureViews() {
+        backgroundColor = config.sectionBackgroundColor
+        newRowButton.setTitleColor(config.keyPathDisplayColor, forState: UIControlState.Normal)
+        compoundPredicateTypeButton.setTitleColor(config.comparisonButtonColor, forState: UIControlState.Normal)
     }
     
     func didTapCompoundPredicateTypeButton(sender: UIButton) {

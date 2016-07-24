@@ -25,6 +25,11 @@ protocol RowViewDelegate: class {
 
 class RowView: UIView {
     weak var delegate: RowViewDelegate?
+    var config: PredicatorEditorConfig = PredicatorEditorConfig() {
+        didSet {
+            configureViews()
+        }
+    }
     let inputStackView: UIStackView = {
         let stackView = UIStackView(frame: CGRectZero)
         stackView.axis = .Horizontal
@@ -101,6 +106,8 @@ class RowView: UIView {
         setContentHuggingPriority(1000, forAxis: UILayoutConstraintAxis.Vertical)
         translatesAutoresizingMaskIntoConstraints = false
         
+        configureViews()
+        
         keyPathButton.addTarget(self, action: #selector(RowView.didTapKeyPathButton(_:)), forControlEvents: .TouchUpInside)
         comparisonButton.addTarget(self, action: #selector(RowView.didTapComparisonButton(_:)), forControlEvents: .TouchUpInside)
 
@@ -137,6 +144,13 @@ class RowView: UIView {
             make.bottom.equalTo(self)
             make.height.equalTo(1)
         }
+    }
+    
+    func configureViews() {
+        inputTextField.textColor = config.inputColor
+        inputPicker.setTitleColor(config.inputColor, forState: UIControlState.Normal)
+        keyPathButton.setTitleColor(config.keyPathDisplayColor, forState: UIControlState.Normal)
+        comparisonButton.setTitleColor(config.comparisonButtonColor, forState: UIControlState.Normal)
     }
     
     func didTapKeyPathButton(sender: AnyObject) {
