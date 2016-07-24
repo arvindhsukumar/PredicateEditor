@@ -39,7 +39,7 @@ public class Section {
     }
     
     internal func ANDPredicate() throws -> NSCompoundPredicate {
-        return try NSCompoundPredicate(orPredicateWithSubpredicates: predicates())
+        return try NSCompoundPredicate(andPredicateWithSubpredicates: predicates())
     }
     
     internal func ORPredicate() throws -> NSCompoundPredicate {
