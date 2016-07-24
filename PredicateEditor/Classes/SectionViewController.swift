@@ -67,7 +67,18 @@ extension SectionViewController {
         for property in section.keyPathTitles {
             let action = UIAlertAction(title: property, style: UIAlertActionStyle.Default, handler: { (action) in
                 row.descriptor = section.descriptorWithTitle(property)
-                row.comparisonType = row.comparisonType ?? row.descriptor?.propertyType.comparisonTypes().first
+                var newComparisonType: KeyPathComparisonType?
+                if let comparisonTypes = row.descriptor?.propertyType.comparisonTypes()
+                {
+                    if let currentComparisonType = row.comparisonType where comparisonTypes.contains(currentComparisonType) {
+                        newComparisonType = currentComparisonType
+                    }
+                    else {
+                        newComparisonType = row.descriptor?.propertyType.comparisonTypes().first
+                    }
+                }
+                
+                row.comparisonType = newComparisonType
                 row.resetBaseValue()
                 if let index = row.index {
                     self.sectionView.reloadItemAtIndex(index)
