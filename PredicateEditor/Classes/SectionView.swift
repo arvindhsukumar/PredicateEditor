@@ -19,7 +19,7 @@ protocol SectionViewDataSource: class {
     func sectionViewCompoundPredicateType() -> SectionPredicateType
     func sectionViewTitle() -> String
     func sectionViewNumberOfRows() -> Int
-    func sectionViewRowForItemAtIndex(index: Int) -> UIView
+    func sectionViewRowForItemAtIndex(index: Int) -> RowView
 }
 
 public class SectionView: UIView {
@@ -57,7 +57,7 @@ public class SectionView: UIView {
         return rowStackView
     }()
     
-    var rowViews: [UIView] = []
+    var rowViews: [RowView] = []
     
     let newRowView: UIView = {
         let view = UIView(frame: CGRectZero)
@@ -162,6 +162,13 @@ public class SectionView: UIView {
         backgroundColor = config.sectionBackgroundColor
         newRowButton.setTitleColor(config.keyPathDisplayColor, forState: UIControlState.Normal)
         compoundPredicateTypeButton.setTitleColor(config.comparisonButtonColor, forState: UIControlState.Normal)
+    }
+    
+    func findOrCreateRowAtIndex(index:Int) -> RowView {
+        if index < rowViews.count {
+            return rowViews[index] as! RowView
+        }
+        return RowView(frame: CGRectZero)
     }
     
     func didTapCompoundPredicateTypeButton(sender: UIButton) {

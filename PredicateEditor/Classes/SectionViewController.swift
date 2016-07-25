@@ -190,22 +190,17 @@ extension SectionViewController: SectionViewDelegate, SectionViewDataSource {
         return section.rows.count
     }
 
-    func sectionViewRowForItemAtIndex(index: Int) -> UIView {
-        var rowView: RowView!
-        if index < sectionView.rowViews.count {
-            let view = sectionView.rowViews[index]
-            rowView = view as! RowView
-        }
-        else {
-            let view = RowView(frame: CGRectZero)
-            view.delegate = self
-            view.config = config
-            view.tag = index
-            view.backgroundColor = UIColor.whiteColor()
-            rowView = view
-        }
+    func sectionViewRowForItemAtIndex(index: Int) -> RowView {
+        let rowView: RowView = sectionView.findOrCreateRowAtIndex(index)
+        
+        rowView.delegate = self
+        rowView.config = config
+        rowView.tag = index
+        rowView.backgroundColor = UIColor.whiteColor()
+        
         let row = section.rows[index]
         rowView.configureWithRow(row)
+        
         return rowView
     }
 }
