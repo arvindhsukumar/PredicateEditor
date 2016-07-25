@@ -58,7 +58,8 @@ public class PredicateEditorViewController: UIViewController {
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Cancel, target: self, action: #selector(PredicateEditorViewController.dismiss))
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Done, target: self, action: #selector(PredicateEditorViewController.createPredicateAndDismiss))
-
+        navigationController?.navigationBar.translucent = false
+        
         edgesForExtendedLayout = .None
         setupStackView()
     }
@@ -103,10 +104,14 @@ public class PredicateEditorViewController: UIViewController {
 
 public extension PredicateEditorViewController {
     public func predicates() throws -> [NSPredicate] {
-        return try sections.map({ (section) -> NSPredicate in
+        let predicates = try sections.map({ (section) -> NSPredicate in
             dump(try section.predicates())
             print(section.compoundPredicateType)
             return try section.compoundPredicate()
+        })
+        
+        return predicates.filter({ (predicate:NSPredicate) -> Bool in
+            return !predicate.isEmpty
         })
     }
 }

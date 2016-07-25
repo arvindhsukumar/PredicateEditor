@@ -15,6 +15,7 @@ let kVerticalMargin: CGFloat = 10
 private let kButtonHeight: CGFloat = 36
 
 private let kButtonTint: UIColor = UIColor(red:0.34, green:0.15, blue:0.43, alpha:1.00)
+private let kFontSize: CGFloat = 18
 
 protocol RowViewDelegate: class {
     func didTapKeyPathButtonInRowView(rowView:RowView)
@@ -62,6 +63,7 @@ class RowView: UIView {
         let textField = UITextField(frame: CGRectZero)
         textField.borderStyle = .None
         textField.placeholder = "Value"
+        textField.font = UIFont.systemFontOfSize(kFontSize)
         return textField
     }()
     
@@ -71,6 +73,7 @@ class RowView: UIView {
         button.setTitleColor(UIColor.blueColor(), forState: UIControlState.Normal)
         button.contentHorizontalAlignment = .Left
         button.setTitle("Picker!", forState: UIControlState.Normal)
+        button.titleLabel?.font = UIFont.systemFontOfSize(kFontSize)
         return button
     }()
     
@@ -80,6 +83,7 @@ class RowView: UIView {
         button.setContentCompressionResistancePriority(900, forAxis: UILayoutConstraintAxis.Horizontal)
         button.contentHorizontalAlignment = .Left
         button.setTitleColor(kButtonTint, forState: UIControlState.Normal)
+        button.titleLabel?.font = UIFont.systemFontOfSize(kFontSize)
         return button
     }()
     
@@ -91,6 +95,7 @@ class RowView: UIView {
         button.titleLabel?.lineBreakMode = .ByTruncatingTail;
         button.contentHorizontalAlignment = .Left
         button.setTitleColor(UIColor.magentaColor(), forState: UIControlState.Normal)
+        button.titleLabel?.font = UIFont.systemFontOfSize(kFontSize)
         return button
     }()
     

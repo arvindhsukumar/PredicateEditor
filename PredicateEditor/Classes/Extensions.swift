@@ -27,3 +27,9 @@ extension Bool {
         return string == "true" ? true : false
     }
 }
+
+extension NSPredicate {
+    var isEmpty: Bool {
+        return predicateFormat == "FALSEPREDICATE"
+    }
+}
