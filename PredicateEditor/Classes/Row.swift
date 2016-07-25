@@ -5,7 +5,7 @@
 import Foundation
 
 enum RowPredicateError: ErrorType {
-    case InsufficientData(keyPath: String?)
+    case InsufficientData(keyPath: KeyPathDescriptor?)
     case InvalidComparisonType(keyPath: String)
 }
 
@@ -122,7 +122,7 @@ let valueDateTimeFormatter: NSDateFormatter = {
     
     func toPredicate() throws -> NSPredicate {
         guard let descriptor = descriptor, comparisonType = comparisonType, let value = value else {
-            throw RowPredicateError.InsufficientData(keyPath: self.descriptor?.keyPath ?? "")
+            throw RowPredicateError.InsufficientData(keyPath: self.descriptor)
         }
         
         if !descriptor.propertyType.comparisonTypes().contains(comparisonType) {

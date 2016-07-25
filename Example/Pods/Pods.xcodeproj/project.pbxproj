@@ -61,6 +61,7 @@
 		C956DEF0C3E887C35D7FF13EFB05752A /* NSDate+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801CFC218A1324C329E7ED2CC7039CE9 /* NSDate+Timepiece.swift */; };
 		CB225B538C5606CE0B183DD0B57F1B21 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51DE6C3EBCD4AB78B996F6C710287BBC /* Foundation.framework */; };
 		CFF18C8A92A9D07AD3931CA67EFF9079 /* SeedStackViewController-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = F6646365768CED82EB631AB0DFB3EE49 /* SeedStackViewController-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D43EF5EB1D46665C00EAD1A5 /* ErrorToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43EF5EA1D46665C00EAD1A5 /* ErrorToastView.swift */; };
 		D44D98631D45354D00FA58C8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14912D989E13F34E9E4B65F96E0FBFC3 /* Images.xcassets */; };
 		D60CCC575F85D41D73042F8B041EFFA1 /* Pods-PredicateEditor_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 0DD4C0D6DE5E12DFD6A405EC90B68919 /* Pods-PredicateEditor_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DF40B15709B6CB2F43002159C92B2207 /* PredicateEditor-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A3CA5AE700280EDCEC003E67F0917D29 /* PredicateEditor-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -213,6 +214,7 @@
 		D1129B22DAB660F675CCDD0EC775C90F /* PredicateEditor.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = PredicateEditor.xcconfig; sourceTree = "<group>"; };
 		D1FE8C9A69AC699A1E82AD955B671D6A /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D2947E291EEE66618189308F1B99F052 /* PredicateComparable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PredicateComparable.swift; sourceTree = "<group>"; };
+		D43EF5EA1D46665C00EAD1A5 /* ErrorToastView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorToastView.swift; sourceTree = "<group>"; };
 		E0C37C35A66D289216326371D4B2CCCF /* NSTimeInterval+Timepiece.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSTimeInterval+Timepiece.swift"; path = "Sources/NSTimeInterval+Timepiece.swift"; sourceTree = "<group>"; };
 		E2770D92AD4D39B1C3E161BFCFE5D853 /* Pods-PredicateEditor_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-PredicateEditor_Tests-umbrella.h"; sourceTree = "<group>"; };
 		E2B3A3282796031DDCB06386B8D6F8CA /* Timepiece.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Timepiece.modulemap; sourceTree = "<group>"; };
@@ -379,6 +381,7 @@
 				3A0D9809CE5D2F4EAC085D4206E1B5A5 /* SectionView.swift */,
 				624B396A12D6CCA3159E4B493C7BE2D1 /* SectionViewController.swift */,
 				139384B25E25F103F63067B82052986D /* SemiModalTransition.swift */,
+				D43EF5EA1D46665C00EAD1A5 /* ErrorToastView.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -876,6 +879,7 @@
 				137EBF23CDFA4595D0A17CF637457B7B /* PredicateEditor-dummy.m in Sources */,
 				6EC61BCB6B48C3D54E69A6E0E62EEFAD /* PredicateEditorViewController.swift in Sources */,
 				2F4C789EA9AD4117597187828A654734 /* Row.swift in Sources */,
+				D43EF5EB1D46665C00EAD1A5 /* ErrorToastView.swift in Sources */,
 				FCDAF2A2268D7A1E084BF61147752653 /* RowView.swift in Sources */,
 				16B00018B3DC29BA368F26306D160D0C /* Section.swift in Sources */,
 				201594B21C3BECCA41538CF0864EC6AA /* SectionView.swift in Sources */,
