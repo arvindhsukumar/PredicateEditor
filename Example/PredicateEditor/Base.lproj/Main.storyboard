@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--Person List View Controller-->
+        <!--People-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
                 <viewController id="vXZ-lx-hvc" customClass="PersonListViewController" customModule="PredicateEditor_Example" customModuleProvider="target" sceneMemberID="viewController">
@@ -18,7 +18,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
-                    <navigationItem key="navigationItem" id="eyp-IN-X91">
+                    <navigationItem key="navigationItem" title="People" id="eyp-IN-X91">
                         <barButtonItem key="rightBarButtonItem" title="Item" id="9c8-Nw-DFf">
                             <connections>
                                 <action selector="generatePredicate:" destination="vXZ-lx-hvc" id="whB-YH-095"/>
@@ -38,6 +38,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="MCi-Xv-f3U">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" white="0.94999999999999996" alpha="1" colorSpace="calibratedWhite"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

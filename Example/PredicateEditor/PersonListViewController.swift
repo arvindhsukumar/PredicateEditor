@@ -44,6 +44,8 @@ class PersonListViewController: UIViewController {
     
     func showPredicateEditor() {
         let nc = UINavigationController(rootViewController: predicateEditorVC)
+        nc.navigationBar.translucent = false
+        nc.navigationBar.barTintColor = UIColor(white: 0.95, alpha: 1)
         nc.modalTransitionStyle = .CoverVertical
         presentViewController(nc, animated: true, completion: nil)
     }
@@ -54,7 +56,7 @@ class PersonListViewController: UIViewController {
         
         // To enable self-sizing cells using auto-layout
         tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 200
+        tableView.estimatedRowHeight = 120
         
         // To prevent separators for non-content cells
         tableView.tableFooterView = UIView()
@@ -152,6 +154,7 @@ class PersonListViewController: UIViewController {
         let section = Section(title: "Filter People", keyPaths: keyPaths)
 
         self.predicateEditorVC = PredicateEditorViewController(sections: [section])
+        predicateEditorVC.title = "Filter"
         predicateEditorVC.delegate = self
     }
 }
@@ -190,7 +193,6 @@ extension PersonListViewController: PredicateEditorDelegate {
     func predicateEditorDidFinishWithPredicates(predicates: [NSPredicate]) {
         let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
         filteredPeople = (people as NSArray).filteredArrayUsingPredicate(compoundPredicate) as! [Person]
-        print(filteredPeople.count)
         tableView.reloadData()
     }
 }

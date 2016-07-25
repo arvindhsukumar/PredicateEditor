@@ -20,8 +20,6 @@ class DatePickerViewController: UIViewController {
     let datePicker: UIDatePicker = {
         let dp = UIDatePicker(frame: CGRectZero)
         dp.timeZone = NSTimeZone.defaultTimeZone()
-        print(NSCalendar.currentCalendar().timeZone)
-        print(NSTimeZone.defaultTimeZone())
         dp.backgroundColor = UIColor.whiteColor()
         dp.setContentCompressionResistancePriority(1000, forAxis: .Vertical)
         return dp

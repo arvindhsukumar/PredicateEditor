@@ -104,7 +104,7 @@ public class PredicateEditorViewController: UIViewController {
             showErrorToast(message)
         }
         catch {
-            print("error")
+            print(error)
         }
     }
     
@@ -168,8 +168,6 @@ public class PredicateEditorViewController: UIViewController {
 public extension PredicateEditorViewController {
     public func predicates() throws -> [NSPredicate] {
         let predicates = try sections.map({ (section) -> NSPredicate in
-            dump(try section.predicates())
-            print(section.compoundPredicateType)
             return try section.compoundPredicate()
         })
         

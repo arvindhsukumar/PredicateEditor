@@ -128,7 +128,6 @@ extension SectionViewController {
                 
                 row.stringValue = option
                 if let index = row.index {
-                    print("reloading item at index \(row.index)")
                     self.sectionView.reloadItemAtIndex(index)
                 }
             })
@@ -209,15 +208,12 @@ extension SectionViewController: RowViewDelegate {
     func didTapKeyPathButtonInRowView(rowView: RowView) {
         guard let index = sectionView.indexOfRowView(rowView) else {return}
         let row = section.rows[index]
-        print(row.descriptor?.keyPath)
         showKeyPathOptions(forRow: row)
     }
     
     func didTapComparisonButtonInRowView(rowView: RowView) {
         guard let index = sectionView.indexOfRowView(rowView) else {return}
-        print("did tap comparison in row \(index)")
         let row = section.rows[index]
-        print(row.comparisonType)
         showComparisonOptions(forRow: row)
     }
     
@@ -283,7 +279,6 @@ extension SectionViewController: DatePickerDelegate {
     func datePickerDidSelectDate(row: Row, date: NSDate, datePickerMode: UIDatePickerMode) {
         row.value = date
         if let index = row.index {
-            print("reloading item at index \(row.index)")
             self.sectionView.reloadItemAtIndex(index)
         }
     }

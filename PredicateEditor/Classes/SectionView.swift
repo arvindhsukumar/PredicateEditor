@@ -195,7 +195,6 @@ public class SectionView: UIView {
     }
     
     func reloadItemAtIndex(index: Int) {
-        print("there are \(rowViews.count) rows")
         if index >= rowViews.count {
             return
         }
