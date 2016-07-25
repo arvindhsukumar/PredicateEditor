@@ -20,7 +20,9 @@ class PersonTableViewCell: UITableViewCell {
     
     let detailsLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFontOfSize(15)
+        label.font = UIFont.systemFontOfSize(14)
+        label.numberOfLines = 0
+        label.textColor = UIColor(white: 0.4, alpha: 1)
         label.backgroundColor = UIColor.whiteColor()
         return label
     }()

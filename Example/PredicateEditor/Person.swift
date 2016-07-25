@@ -20,8 +20,8 @@ class Person: NSObject {
     var appointmentDate: NSDate!
     var favoriteColor: String!
     var gender: String!
-    var isADeveloper: Bool!
-    var heightInCentimeters: Float!
+    var isADeveloper: Bool = false
+    var heightInCentimeters: Float = 0
     
     init(name: String, dateOfBirth:NSDate, appointmentDate: NSDate, favoriteColor: String, gender: String, isADeveloper: Bool, heightInCentimeters: Float){
         super.init()

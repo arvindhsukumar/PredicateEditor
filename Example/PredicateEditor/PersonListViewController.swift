@@ -21,6 +21,12 @@ class PersonListViewController: UIViewController {
     var filteredPeople: [Person] = []
     
     var predicateEditorVC: PredicateEditorViewController!
+    let dateFormatter: NSDateFormatter = {
+        let df = NSDateFormatter()
+        df.dateStyle = .MediumStyle
+        df.timeStyle = .MediumStyle
+        return df
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,7 +54,7 @@ class PersonListViewController: UIViewController {
         
         // To enable self-sizing cells using auto-layout
         tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 60
+        tableView.estimatedRowHeight = 200
         
         // To prevent separators for non-content cells
         tableView.tableFooterView = UIView()
@@ -137,7 +143,7 @@ class PersonListViewController: UIViewController {
         kp6.enumerationOptions = ["Male","Female"]
         var kp7 = KeyPathDescriptor(keyPath:"favoriteColor", title: "Favorite Color", propertyType: .String)
         kp7.enumerationOptions = ["Blue","Black","Orange","Purple","Green"]
-        let kp8 = KeyPathDescriptor(keyPath:"heightInCentimeters", title: "Height in cm", propertyType: .Float)
+        let kp8 = KeyPathDescriptor(keyPath:"heightInCentimeters", title: "Height in Centimeters", propertyType: .Float)
         let kp9 = KeyPathDescriptor(keyPath:"isADeveloper", title: "Is a Developer", propertyType: .Boolean)
 
 
@@ -160,17 +166,30 @@ extension PersonListViewController: UITableViewDelegate, UITableViewDataSource {
         
         let person = filteredPeople[indexPath.row]
         cell.nameLabel.text = person.name
-        
+        cell.detailsLabel.text = detailString(person)
         cell.selectionStyle = .None
         
         return cell
+    }
+    
+    private func detailString(person: Person) -> String {
+        let age = "Age: \(person.age)"
+        let favoriteColor = "Favorite Color: \(person.favoriteColor)"
+        let gender = "Gender: \(person.gender)"
+        let isDeveloper = "Is Developer: " + (person.isADeveloper ? "true" : "false")
+        let dateOfBirth = "Date of Birth: " + dateFormatter.stringFromDate(person.dateOfBirth)
+        let appointmentDate = "Appointment Date: " + dateFormatter.stringFromDate(person.appointmentDate)
+        let height = "Height \(person.heightInCentimeters) cms"
+        let stringArray = [age, gender, dateOfBirth, height, appointmentDate, isDeveloper, favoriteColor]
+        let string = stringArray.joinWithSeparator("\n")
+        return string
     }
 }
 
 extension PersonListViewController: PredicateEditorDelegate {
     func predicateEditorDidFinishWithPredicates(predicates: [NSPredicate]) {
         let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
-        filteredPeople = (people as NSArray).filteredArrayUsingPredicate(predicates[0]) as! [Person]
+        filteredPeople = (people as NSArray).filteredArrayUsingPredicate(compoundPredicate) as! [Person]
         print(filteredPeople.count)
         tableView.reloadData()
     }

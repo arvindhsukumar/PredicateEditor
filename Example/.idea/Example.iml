@@ -7,21 +7,16 @@
       <sourceFolder url="file://$MODULE_DIR$/Podfile" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Tests/Tests.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Tests/Info.plist" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/PredicateEditor/Person.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/PredicateEditor/AppDelegate.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/PredicateEditor/PersonTableViewCell.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/PredicateEditor/PersonListViewController.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/PredicateEditor/ViewController.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/PredicateEditor/Images.xcassets" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/PredicateEditor/Playground.playground" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/PredicateEditor/Info.plist" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/PredicateEditor/Base.lproj/LaunchScreen.xib" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/PredicateEditor/Base.lproj/Main.storyboard" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/Timepiece/Sources/Int+Timepiece.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/Timepiece/Sources/NSCalendar+Timepiece.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/Timepiece/Sources/Duration.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/Timepiece/Sources/String+Timepiece.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/Timepiece/Sources/NSTimeInterval+Timepiece.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/Timepiece/Sources/NSDateComponents+Timepiece.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/Timepiece/Sources/NSDate+Timepiece.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/Timepiece/Sources/NSCalendarUnit+Timepiece.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/SeedStackViewController/SeedStackViewController-prefix.pch" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/SeedStackViewController/SeedStackViewController.modulemap" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/SeedStackViewController/Info.plist" isTestSource="false" />
@@ -36,14 +31,14 @@
       <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Timepiece/Timepiece-umbrella.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Pods-PredicateEditor_Tests/Pods-PredicateEditor_Tests-frameworks.sh" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Pods-PredicateEditor_Tests/Pods-PredicateEditor_Tests-dummy.m" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Pods-PredicateEditor_Tests/Pods-PredicateEditor_Tests-acknowledgements.markdown" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Pods-PredicateEditor_Tests/Pods-PredicateEditor_Tests-umbrella.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Pods-PredicateEditor_Tests/Pods-PredicateEditor_Tests.debug.xcconfig" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Pods-PredicateEditor_Tests/Pods-PredicateEditor_Tests-resources.sh" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Pods-PredicateEditor_Tests/Pods-PredicateEditor_Tests.release.xcconfig" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Pods-PredicateEditor_Tests/Info.plist" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Pods-PredicateEditor_Tests/Pods-PredicateEditor_Tests.modulemap" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Pods-PredicateEditor_Tests/Pods-PredicateEditor_Tests-acknowledgements.plist" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Pods-PredicateEditor_Tests/Pods-PredicateEditor_Tests-umbrella.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Pods-PredicateEditor_Tests/Pods-PredicateEditor_Tests-acknowledgements.markdown" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/SnapKit/SnapKit-prefix.pch" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/SnapKit/SnapKit-dummy.m" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/SnapKit/SnapKit.xcconfig" isTestSource="false" />
@@ -57,39 +52,48 @@
       <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Pods-PredicateEditor_Example/Pods-PredicateEditor_Example-acknowledgements.plist" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Pods-PredicateEditor_Example/Info.plist" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Pods-PredicateEditor_Example/Pods-PredicateEditor_Example.release.xcconfig" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Pods-PredicateEditor_Example/Pods-PredicateEditor_Example.modulemap" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Pods-PredicateEditor_Example/Pods-PredicateEditor_Example-resources.sh" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Pods-PredicateEditor_Example/Pods-PredicateEditor_Example-acknowledgements.markdown" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Pods-PredicateEditor_Example/Pods-PredicateEditor_Example-resources.sh" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Pods-PredicateEditor_Example/Pods-PredicateEditor_Example.modulemap" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/PredicateEditor/PredicateEditor.modulemap" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/PredicateEditor/PredicateEditor.xcconfig" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/PredicateEditor/PredicateEditor-prefix.pch" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/PredicateEditor/PredicateEditor-umbrella.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/PredicateEditor/PredicateEditor-dummy.m" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/PredicateEditor/Info.plist" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/PredicateEditor/ResourceBundle-PredicateEditor-Info.plist" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/SeedStackViewController/StackViewController/StackViewContainer.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/SeedStackViewController/StackViewController/UIStackViewExtensions.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/SeedStackViewController/StackViewController/StackViewItem.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/SeedStackViewController/StackViewController/StackViewController.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/SeedStackViewController/StackViewController/SeparatorView.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/SeedStackViewController/StackViewController/UIViewExtensions.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/SeedStackViewController/StackViewController/StackViewController.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/SeedStackViewController/StackViewController/Info.plist" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/SeedStackViewController/StackViewController/UIViewExtensions.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/SeedStackViewController/StackViewController/AutoScrollView.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/SnapKit/Source/ConstraintAttributes.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/SeedStackViewController/StackViewController/StackViewController.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/Timepiece/Sources/Int+Timepiece.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/Timepiece/Sources/NSCalendar+Timepiece.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/Timepiece/Sources/Duration.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/Timepiece/Sources/String+Timepiece.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/Timepiece/Sources/NSTimeInterval+Timepiece.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/Timepiece/Sources/NSDateComponents+Timepiece.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/Timepiece/Sources/NSDate+Timepiece.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/Timepiece/Sources/NSCalendarUnit+Timepiece.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/SnapKit/Source/View+SnapKit.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/SnapKit/Source/ConstraintMaker.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/SnapKit/Source/ConstraintDescription.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/SnapKit/Source/ViewController+SnapKit.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/SnapKit/Source/View+SnapKit.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/SnapKit/Source/ConstraintAttributes.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/SnapKit/Source/Constraint.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/SnapKit/Source/Debugging.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/SnapKit/Source/ConstraintRelation.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/SnapKit/Source/LayoutConstraint.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/SnapKit/Source/SnapKit.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/SnapKit/Source/EdgeInsets.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/SnapKit/Source/ConstraintItem.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/SnapKit/Source/LayoutConstraint.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/SnapKit/Source/ConstraintRelation.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/../PredicateEditor/Classes/DatePickerViewController.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/../PredicateEditor/Classes/RowView.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/../PredicateEditor/Classes/SemiModalTransition.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../PredicateEditor/Classes/Row.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/../PredicateEditor/Classes/Extensions.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/../PredicateEditor/Classes/PredicateEditorViewController.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/../PredicateEditor/Classes/Section.swift" isTestSource="false" />
@@ -100,8 +104,9 @@
       <sourceFolder url="file://$MODULE_DIR$/../PredicateEditor/Classes/KeyPathDescriptor.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/../PredicateEditor/Classes/PredicateSectionCell.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/../PredicateEditor/Classes/PredicateComparable.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/../PredicateEditor/Classes/Row.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../PredicateEditor/Classes/SemiModalTransition.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/../PredicateEditor/Classes/NSDate+TimeExtensions.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../PredicateEditor/Assets/Images.xcassets" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/../README.md" isTestSource="false" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />

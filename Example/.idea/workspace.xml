@@ -33,10 +33,15 @@
       <file leaf-file-name="SectionView.swift" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../PredicateEditor/Classes/SectionView.swift">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="840">
-              <caret line="58" column="8" selection-start-line="58" selection-start-column="8" selection-end-line="58" selection-end-column="8" />
+            <state relative-caret-position="915">
+              <caret line="63" column="8" selection-start-line="63" selection-start-column="8" selection-end-line="63" selection-end-column="8" />
               <folding>
-                <element signature="e#99#111#0" expanded="true" />
+                <marker date="1469383892000" expanded="true" signature="99:153" ph="import ..." />
+                <marker date="1469383892000" expanded="true" signature="191:280" ph="{...}" />
+                <marker date="1469383892000" expanded="true" signature="320:531" ph="{...}" />
+                <marker date="1469383892000" expanded="true" signature="566:664" ph="{...}" />
+                <marker date="1469383892000" expanded="true" signature="8273:8279" ph="{...}" />
+                <marker date="1469383892000" expanded="true" signature="8273:8469" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -55,7 +60,7 @@
       <file leaf-file-name="RowStackView.swift" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../PredicateEditor/Classes/RowStackView.swift">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="537">
+            <state relative-caret-position="560">
               <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
               <folding>
                 <element signature="e#100#112#0" expanded="true" />
@@ -77,9 +82,21 @@
       <file leaf-file-name="Row.swift" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../PredicateEditor/Classes/Row.swift">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" column="1" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
-              <folding />
+            <state relative-caret-position="0">
+              <caret line="0" column="1" selection-start-line="0" selection-start-column="1" selection-end-line="0" selection-end-column="1" />
+              <folding>
+                <marker date="1469359516000" expanded="true" signature="771:7541" ph="{...}" />
+                <marker date="1469359516000" expanded="true" signature="945:1087" ph="{...}" />
+                <marker date="1469359516000" expanded="true" signature="959:1009" ph="{...}" />
+                <marker date="1469359516000" expanded="true" signature="1022:1081" ph="{...}" />
+                <marker date="1469359516000" expanded="true" signature="1146:1196" ph="{...}" />
+                <marker date="1469359516000" expanded="true" signature="1339:1588" ph="{...}" />
+                <marker date="1469359516000" expanded="true" signature="1662:2640" ph="{...}" />
+                <marker date="1469359516000" expanded="true" signature="2686:3571" ph="{...}" />
+                <marker date="1469359516000" expanded="true" signature="3603:3657" ph="{...}" />
+                <marker date="1469359516000" expanded="true" signature="3708:5350" ph="{...}" />
+                <marker date="1469359516000" expanded="true" signature="5497:7538" ph="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -304,11 +321,12 @@
       <option name="presentableId" value="Default" />
       <updated>1467882193382</updated>
       <workItem from="1469029437061" duration="426000" />
+      <workItem from="1469425614271" duration="551000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="426000" />
+    <option name="totallyTimeSpent" value="977000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="773" extended-state="6" />
@@ -361,10 +379,92 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../PredicateEditor/Classes/SectionView.swift">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="870">
+          <caret line="58" column="8" selection-start-line="58" selection-start-column="8" selection-end-line="58" selection-end-column="8" />
+          <folding>
+            <marker date="1469383892000" expanded="true" signature="99:153" ph="import ..." />
+            <marker date="1469383892000" expanded="true" signature="191:280" ph="{...}" />
+            <marker date="1469383892000" expanded="true" signature="320:531" ph="{...}" />
+            <marker date="1469383892000" expanded="true" signature="566:664" ph="{...}" />
+            <marker date="1469383892000" expanded="true" signature="8273:8279" ph="{...}" />
+            <marker date="1469383892000" expanded="true" signature="8273:8469" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pods/SeedStackViewController/StackViewController/StackViewContainer.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="9" selection-start-line="18" selection-start-column="9" selection-end-line="18" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../PredicateEditor/Classes/RowStackView.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="600">
+          <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+          <folding>
+            <element signature="e#100#112#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../PredicateEditor.podspec">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="585">
+          <caret line="39" column="36" selection-start-line="39" selection-start-column="36" selection-end-line="39" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../PredicateEditor/Classes/Row.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="1" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
+          <folding>
+            <marker date="1469359516000" expanded="true" signature="771:7541" ph="{...}" />
+            <marker date="1469359516000" expanded="true" signature="945:1087" ph="{...}" />
+            <marker date="1469359516000" expanded="true" signature="959:1009" ph="{...}" />
+            <marker date="1469359516000" expanded="true" signature="1022:1081" ph="{...}" />
+            <marker date="1469359516000" expanded="true" signature="1146:1196" ph="{...}" />
+            <marker date="1469359516000" expanded="true" signature="1339:1588" ph="{...}" />
+            <marker date="1469359516000" expanded="true" signature="1662:2640" ph="{...}" />
+            <marker date="1469359516000" expanded="true" signature="2686:3571" ph="{...}" />
+            <marker date="1469359516000" expanded="true" signature="3603:3657" ph="{...}" />
+            <marker date="1469359516000" expanded="true" signature="3708:5350" ph="{...}" />
+            <marker date="1469359516000" expanded="true" signature="5497:7538" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../PredicateEditor/Classes/KeyPathDescriptor.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="23" column="5" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../PredicateEditor/Classes/Section.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="8" selection-start-line="18" selection-start-column="8" selection-end-line="18" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../PredicateEditor/Classes/SectionView.swift">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="840">
           <caret line="58" column="8" selection-start-line="58" selection-start-column="8" selection-end-line="58" selection-end-column="8" />
           <folding>
-            <element signature="e#99#111#0" expanded="true" />
+            <marker date="1469383892000" expanded="true" signature="99:153" ph="import ..." />
+            <marker date="1469383892000" expanded="true" signature="191:280" ph="{...}" />
+            <marker date="1469383892000" expanded="true" signature="320:531" ph="{...}" />
+            <marker date="1469383892000" expanded="true" signature="566:664" ph="{...}" />
+            <marker date="1469383892000" expanded="true" signature="8273:8279" ph="{...}" />
+            <marker date="1469383892000" expanded="true" signature="8273:8469" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -399,7 +499,19 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
           <caret line="9" column="1" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
-          <folding />
+          <folding>
+            <marker date="1469359516000" expanded="true" signature="771:7541" ph="{...}" />
+            <marker date="1469359516000" expanded="true" signature="945:1087" ph="{...}" />
+            <marker date="1469359516000" expanded="true" signature="959:1009" ph="{...}" />
+            <marker date="1469359516000" expanded="true" signature="1022:1081" ph="{...}" />
+            <marker date="1469359516000" expanded="true" signature="1146:1196" ph="{...}" />
+            <marker date="1469359516000" expanded="true" signature="1339:1588" ph="{...}" />
+            <marker date="1469359516000" expanded="true" signature="1662:2640" ph="{...}" />
+            <marker date="1469359516000" expanded="true" signature="2686:3571" ph="{...}" />
+            <marker date="1469359516000" expanded="true" signature="3603:3657" ph="{...}" />
+            <marker date="1469359516000" expanded="true" signature="3708:5350" ph="{...}" />
+            <marker date="1469359516000" expanded="true" signature="5497:7538" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -424,7 +536,12 @@
         <state relative-caret-position="450">
           <caret line="31" column="18" selection-start-line="31" selection-start-column="18" selection-end-line="31" selection-end-column="18" />
           <folding>
-            <element signature="e#99#111#0" expanded="true" />
+            <marker date="1469383892000" expanded="true" signature="99:153" ph="import ..." />
+            <marker date="1469383892000" expanded="true" signature="191:280" ph="{...}" />
+            <marker date="1469383892000" expanded="true" signature="320:531" ph="{...}" />
+            <marker date="1469383892000" expanded="true" signature="566:664" ph="{...}" />
+            <marker date="1469383892000" expanded="true" signature="8273:8279" ph="{...}" />
+            <marker date="1469383892000" expanded="true" signature="8273:8469" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -443,7 +560,19 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
           <caret line="9" column="1" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
-          <folding />
+          <folding>
+            <marker date="1469359516000" expanded="true" signature="771:7541" ph="{...}" />
+            <marker date="1469359516000" expanded="true" signature="945:1087" ph="{...}" />
+            <marker date="1469359516000" expanded="true" signature="959:1009" ph="{...}" />
+            <marker date="1469359516000" expanded="true" signature="1022:1081" ph="{...}" />
+            <marker date="1469359516000" expanded="true" signature="1146:1196" ph="{...}" />
+            <marker date="1469359516000" expanded="true" signature="1339:1588" ph="{...}" />
+            <marker date="1469359516000" expanded="true" signature="1662:2640" ph="{...}" />
+            <marker date="1469359516000" expanded="true" signature="2686:3571" ph="{...}" />
+            <marker date="1469359516000" expanded="true" signature="3603:3657" ph="{...}" />
+            <marker date="1469359516000" expanded="true" signature="3708:5350" ph="{...}" />
+            <marker date="1469359516000" expanded="true" signature="5497:7538" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -465,9 +594,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../PredicateEditor/Classes/Row.swift">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="1" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
-          <folding />
+        <state relative-caret-position="0">
+          <caret line="0" column="1" selection-start-line="0" selection-start-column="1" selection-end-line="0" selection-end-column="1" />
+          <folding>
+            <marker date="1469359516000" expanded="true" signature="771:7541" ph="{...}" />
+            <marker date="1469359516000" expanded="true" signature="945:1087" ph="{...}" />
+            <marker date="1469359516000" expanded="true" signature="959:1009" ph="{...}" />
+            <marker date="1469359516000" expanded="true" signature="1022:1081" ph="{...}" />
+            <marker date="1469359516000" expanded="true" signature="1146:1196" ph="{...}" />
+            <marker date="1469359516000" expanded="true" signature="1339:1588" ph="{...}" />
+            <marker date="1469359516000" expanded="true" signature="1662:2640" ph="{...}" />
+            <marker date="1469359516000" expanded="true" signature="2686:3571" ph="{...}" />
+            <marker date="1469359516000" expanded="true" signature="3603:3657" ph="{...}" />
+            <marker date="1469359516000" expanded="true" signature="3708:5350" ph="{...}" />
+            <marker date="1469359516000" expanded="true" signature="5497:7538" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -489,10 +630,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../PredicateEditor/Classes/SectionView.swift">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="840">
-          <caret line="58" column="8" selection-start-line="58" selection-start-column="8" selection-end-line="58" selection-end-column="8" />
+        <state relative-caret-position="915">
+          <caret line="63" column="8" selection-start-line="63" selection-start-column="8" selection-end-line="63" selection-end-column="8" />
           <folding>
-            <element signature="e#99#111#0" expanded="true" />
+            <marker date="1469383892000" expanded="true" signature="99:153" ph="import ..." />
+            <marker date="1469383892000" expanded="true" signature="191:280" ph="{...}" />
+            <marker date="1469383892000" expanded="true" signature="320:531" ph="{...}" />
+            <marker date="1469383892000" expanded="true" signature="566:664" ph="{...}" />
+            <marker date="1469383892000" expanded="true" signature="8273:8279" ph="{...}" />
+            <marker date="1469383892000" expanded="true" signature="8273:8469" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -507,7 +653,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../PredicateEditor/Classes/RowStackView.swift">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="537">
+        <state relative-caret-position="560">
           <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
           <folding>
             <element signature="e#100#112#0" expanded="true" />
