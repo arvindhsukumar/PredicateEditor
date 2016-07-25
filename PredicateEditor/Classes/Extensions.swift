@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Timepiece
 
 extension Dictionary {
     func keysToArray() -> [Key] {
@@ -15,6 +16,12 @@ extension Dictionary {
     
     func valuesToArray() -> [Value] {
         return Array(self.values)
+    }
+}
+
+extension NSDate {
+    var time: NSDate {
+        return change(year: 0, month: 0, day: 0, hour: hour, minute: minute, second: second)
     }
 }
 
