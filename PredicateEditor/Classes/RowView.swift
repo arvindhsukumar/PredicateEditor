@@ -52,8 +52,9 @@ class RowView: UIView {
     let buttonStackView: UIStackView = {
         let stackView = UIStackView(frame: CGRectZero)
         stackView.axis = .Horizontal
-        stackView.distribution = .FillProportionally
+        stackView.distribution = .Fill
         stackView.spacing = 8
+        stackView.clipsToBounds = true
         return stackView
     }()
 
@@ -76,6 +77,7 @@ class RowView: UIView {
     let keyPathButton: UIButton = {
         let button = UIButton(type: .Custom)
         button.setContentHuggingPriority(901, forAxis: UILayoutConstraintAxis.Horizontal)
+        button.setContentCompressionResistancePriority(900, forAxis: UILayoutConstraintAxis.Horizontal)
         button.contentHorizontalAlignment = .Left
         button.setTitleColor(kButtonTint, forState: UIControlState.Normal)
         return button
@@ -83,7 +85,10 @@ class RowView: UIView {
     
     let comparisonButton: UIButton = {
         let button = UIButton(type: .Custom)
-        button.setContentHuggingPriority(900, forAxis: UILayoutConstraintAxis.Horizontal)
+        button.setContentHuggingPriority(500, forAxis: UILayoutConstraintAxis.Horizontal)
+        button.setContentCompressionResistancePriority(500, forAxis: UILayoutConstraintAxis.Horizontal)
+        button.clipsToBounds = true
+        button.titleLabel?.lineBreakMode = .ByTruncatingTail;
         button.contentHorizontalAlignment = .Left
         button.setTitleColor(UIColor.magentaColor(), forState: UIControlState.Normal)
         return button
@@ -129,31 +134,31 @@ class RowView: UIView {
         inputTextField.inputAccessoryView = inputAccessory
         inputPicker.addTarget(self, action: #selector(RowView.didTapInputPickerButton(_:)), forControlEvents: .TouchUpInside)
 
-        addSubview(buttonStackView)
-        setupButtonStackView()
-        buttonStackView.snp_makeConstraints { (make) in
-            make.left.equalTo(self).offset(kHorizontalMargin)
-            make.top.equalTo(self).offset(kVerticalMargin)
-            make.height.equalTo(28)
+        let containerView = UIView()
+        containerView.setContentHuggingPriority(1000, forAxis: .Vertical)
+        addSubview(containerView)
+        containerView.snp_makeConstraints { (make) in
+            make.left.equalTo(kHorizontalMargin)
+            make.top.equalTo(kVerticalMargin)
+            make.bottom.equalTo(-kVerticalMargin)
         }
         
-        deleteButton.addTarget(self, action: #selector(RowView.didTapDeleteButton(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-        addSubview(deleteButton)
-        deleteButton.snp_makeConstraints { (make) in
-            make.width.equalTo(24)
-            make.height.equalTo(24)
-            make.centerY.equalTo(buttonStackView)
-            make.right.equalTo(self).offset(-8).priority(990)
-            make.left.equalTo(buttonStackView.snp_right).priority(750)
+        containerView.addSubview(buttonStackView)
+        setupButtonStackView()
+        buttonStackView.snp_makeConstraints { (make) in
+            make.left.equalTo(containerView)
+            make.top.equalTo(containerView)
+            make.height.equalTo(28)
+            make.right.equalTo(containerView).priority(1000)
         }
-                
-        addSubview(inputStackView)
+        
+        containerView.addSubview(inputStackView)
         inputStackView.snp_makeConstraints { (make) in
-            make.left.equalTo(self).offset(kHorizontalMargin)
-            make.right.equalTo(self).offset(-kHorizontalMargin).priority(990)
+            make.left.equalTo(containerView)
+            make.right.equalTo(containerView)
             make.top.equalTo(buttonStackView.snp_bottom).offset(0)
             self.stackViewHeightConstraint = make.height.equalTo(0).constraint
-            self.stackViewBottomMarginConstraint = make.bottom.equalTo(self).offset(-kVerticalMargin).constraint
+            self.stackViewBottomMarginConstraint = make.bottom.equalTo(containerView).constraint
         }
         
         addSubview(separatorView)
@@ -163,6 +168,17 @@ class RowView: UIView {
             make.bottom.equalTo(self)
             make.height.equalTo(1)
         }
+        
+        deleteButton.addTarget(self, action: #selector(RowView.didTapDeleteButton(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        addSubview(deleteButton)
+        deleteButton.snp_makeConstraints { (make) in
+            make.width.equalTo(24)
+            make.height.equalTo(24)
+            make.centerY.equalTo(containerView)
+            make.right.equalTo(self).offset(-8).priority(990)
+            make.left.equalTo(containerView.snp_right).priority(989)
+        }
+
     }
     
     func configureViews() {
