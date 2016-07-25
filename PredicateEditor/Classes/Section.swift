@@ -17,7 +17,7 @@ public class Section {
     public var title: String
     public var keyPathDescriptors: [KeyPathDescriptor] = []
     public var rows: [Row] = []
-    public var compoundPredicateType: SectionPredicateType = .OR
+    public var compoundPredicateType: SectionPredicateType = .AND
     var keyPathTitles: [String] {
         return keyPathDescriptors.map({ (descriptor:KeyPathDescriptor) -> String in
             return descriptor.title
