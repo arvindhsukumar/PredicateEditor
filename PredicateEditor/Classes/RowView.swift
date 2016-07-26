@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 
 let kHorizontalMargin: CGFloat = 16
-let kVerticalMargin: CGFloat = 10
+let kVerticalMargin: CGFloat = 6
 
 private let kButtonHeight: CGFloat = 36
 

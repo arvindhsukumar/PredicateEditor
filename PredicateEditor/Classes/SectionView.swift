@@ -32,7 +32,7 @@ public class SectionView: UIView {
     }
     let titleLabel: UILabel = {
         let titleLabel = UILabel()
-        titleLabel.font = UIFont.systemFontOfSize(20)
+        titleLabel.font = UIFont.systemFontOfSize(18, weight: UIFontWeightMedium)
         titleLabel.textColor = UIColor(white: 0.2, alpha: 1)
         return titleLabel
     }()
@@ -176,7 +176,7 @@ public class SectionView: UIView {
     }
 
     func reloadCompoundPredicateButton() {
-        let predicateType = dataSource?.sectionViewCompoundPredicateType() ?? SectionPredicateType.OR
+        let predicateType = dataSource?.sectionViewCompoundPredicateType() ?? SectionPredicateType.AND
         let title = predicateType == .OR ? "Any of the following are true" : "All of the following are true"
         compoundPredicateTypeButton.setTitle(title, forState: UIControlState.Normal)
     }
