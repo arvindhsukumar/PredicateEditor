@@ -2,10 +2,12 @@
 
 PredicateEditor is a visual editor for creating and using NSPredicates for querying data in your app.
 
-[TK] image
+![Screenshot](http://i.imgur.com/m7PUa3el.png)
+
+PredicateEditor was inspired by the implementation in [workflow.is](http://workflow.is)
 
 ## Features
-- Create filters for the following property types: Strings, NSDates, NSNumbers, Ints, Floats, and Bools.
+- Create filters for the following property types: `String`s, `NSDate`s, `NSNumber`s, `Int`s, `Float`s, and `Bool`s.
 - Easily define the properties & keyPaths you'd like to be able to filter on.
 - Filters can be added & deleted at will in the UI - The user can define as many filters as required.
 - Input types are automatically updated to reflect the property type - Strings, Dates, Numbers etc
@@ -27,7 +29,7 @@ The first step in using the PredicateEditor is to create sections with the keyPa
 
 Sections are created using one or more `KeyPathDescriptor`s. Each of these describe the property that is to be filtered on, and the keyPath to use while filtering.
 
-Ideally, each section would correspond to a particular model in your app.
+In most cases, each section would correspond to a particular model in your app.
 
 ```swift
 var keyPaths: [KeyPathDescriptor] = []
@@ -45,8 +47,8 @@ let section = Section(title: "Filter People", keyPaths: keyPaths)
 Now you can create a PredicateEditor View Controller instance, and present it:
 
 ```swift
-let predicateEditor = PredicateEditorViewController(sections: [section])
-predicateEditor.delegate = self // Conform to PredicateEditorDelegate to receive callbacks.
+let predicateEditorVC = PredicateEditorViewController(sections: [section])
+predicateEditorVC.delegate = self // Conform to PredicateEditorDelegate to receive callbacks.
 
 // Wrap the editor in a nav controller in order to be able to dismiss it.
 let nc = UINavigationController(rootViewController: predicateEditorVC)
@@ -83,22 +85,29 @@ By default, sections start out empty, and the user has to manually create new fi
 let descriptor = KeyPathDescriptor(keyPath: "name", title: "Name", propertyType: KeyPathPropertyType.String)
 let comparisonType: KeyPathComparisonType = .Contains
 let value = "John"
-let row = Row(descriptor: descriptor, comparisonType: comparisonType, value: value)
-section.append(row!)
+if let row = Row(descriptor: descriptor, comparisonType: comparisonType, value: value){
+  section.append(row)
+}
 
 let descriptor2 = KeyPathDescriptor(keyPath: "dob", title: "Date of Birth", propertyType: KeyPathPropertyType.Date)
 let comparisonType2: KeyPathComparisonType = .IsAfter
 let value2 = NSDate(timeIntervalSince1970: 321312311)
-let row2 = Row(descriptor: descriptor2, comparisonType: comparisonType2, value: value2)
-section.append(row2!)
+if let row2 = Row(descriptor: descriptor2, comparisonType: comparisonType2, value: value2){
+  section.append(row2)
+}
 ```
 
-Note that the comparisonType & value have to be compatible with the descriptor's property type. For example, you should not create a filter with `IsGreaterThan` comparison, on a `String` property type.
+Note that the comparisonType & value have to be compatible with the descriptor's property type. For example, you should not create a filter with `IsGreaterThan` comparison, on a `String` property type. Doing so will lead to an  exception being thrown when creating the predicate.
 
 #### Obtaining Predicates
 Once the user finishes work in the predicate editor, and taps the done button, `predicateEditorDidFinishWithPredicates:` is called on the delegate object, along with an array of `NSPredicate`s - one for each section.
 
 It's up to you to use these predicates any way you want - for instance, you can combine all of them into one compound predicate and filter a single model, or use each predicate on a separate model. In the example above, the resulting predicate would be used on the `Person` model.
+
+```swift
+let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
+let filteredPeople = (people as NSArray).filteredArrayUsingPredicate(compoundPredicate) as! [Person]
+```
 
 ## Example
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
@@ -110,7 +119,7 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 ## Author
 
-Arvindh Sukumar, arvindh.sukumar@gmail.com
+Arvindh Sukumar ([Github](https://www.github.com/arvindhsukumar))
 
 ## License
 
