@@ -22,6 +22,12 @@ it, simply add the following line to your Podfile:
 pod "PredicateEditor"
 ```
 
+## Requirements
+- Requires Xcode 7.3 with Swift 2.2
+- Deployment target of iOS 9+ (due to liberal use of UIStackViews)
+
+**Please note that it's not possible to use this library in Obj-C code yet**
+
 ## Usage
 
 #### Creating the editor
