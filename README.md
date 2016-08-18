@@ -4,7 +4,7 @@ PredicateEditor is a visual editor for creating and using NSPredicates for query
 
 ![Screenshot](http://i.imgur.com/m7PUa3el.png)
 
-PredicateEditor was inspired by the implementation in [workflow.is](http://workflow.is)
+PredicateEditor was inspired by the implementation in [Workflow](http://workflow.is)
 
 ## Features
 - Create filters for the following property types: `String`s, `NSDate`s, `NSNumber`s, `Int`s, `Float`s, and `Bool`s.
