@@ -1,9 +1,0 @@
-<component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="PredicateEditor-Example" type="AppleRunConfiguration" factoryName="Application" WORKING_DIR="" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PredicateEditor" TARGET_NAME="PredicateEditor_Example" CONFIG_NAME="Debug" SCHEME_NAME="PredicateEditor-Example" RUN_TARGET_PROJECT_NAME="PredicateEditor" RUN_TARGET_NAME="PredicateEditor_Example" MAKE_ACTIVE="TRUE" WAIT_FOR="FALSE">
-    <envs />
-    <EXTENSION ID="org.jetbrains.appcode.reveal.RevealRunConfigurationExtension">
-      <REVEAL_SETTINGS autoInject="false" autoInstall="true" askToEnableAutoInstall="true" />
-    </EXTENSION>
-    <method />
-  </configuration>
-</component>
